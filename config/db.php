@@ -13,9 +13,9 @@
  */
 
 return [
-    'host' => '127.0.0.1',
+    'host' => 'localhost',
     'port' => 3306,
     'dbname' => 'ym_php_mvc_jokes',
-    'username' => 'ym_php_mvc_jokes',
-    'password' => 'Password1234'
+    'username' => 'root',
+    'password' => ''
 ];

@@ -28,7 +28,7 @@ loadPartial('navigation');
                     Jokes:
                 </h4>
                 <p class="grow text-4xl ml-6">
-                    <?= $jokeCount->total ?>
+                    <?= $jokeCount ?>
                 </p>
             </section>
 
@@ -37,7 +37,7 @@ loadPartial('navigation');
                     Categories:
                 </h4>
                 <p class="grow text-4xl ml-6">
-                    <?= $categoryCount->total ?>
+                    <?= $categoryCount ?>
                 </p>
             </section>
 
@@ -46,7 +46,7 @@ loadPartial('navigation');
                     Users:
                 </h4>
                 <p class="grow text-4xl ml-6">
-                    <?= $userCount->total ?>
+                    <?= $userCount ?>
                 </p>
             </section>
 

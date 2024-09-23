@@ -60,13 +60,11 @@ class Session
      * @param string $key
      * @return void
      */
-    public static function clear($key)
-    {
+    public  static function clear($key) {
         if (isset($_SESSION[$key])) {
             unset($_SESSION[$key]);
         }
     }
-
 
     /**
      * Set a session key/value pair

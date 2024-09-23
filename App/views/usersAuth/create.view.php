@@ -27,7 +27,7 @@ loadPartial('navigation'); ?>
                 'errors' => $errors ?? []
             ]) ?>
 
-            <form method="POST" action="/usersAuth/create">
+            <form method="POST" action="/auth/register">
 
                 <section class="mb-4">
                     <label for="GivenName" class="mt-4 pb-1">Given Name:</label>

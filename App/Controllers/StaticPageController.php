@@ -38,10 +38,20 @@ class StaticPageController
     public function index()
     {
         // TODO: Crete the method code for the home page
-        $listings = $this->db->query('SELECT * FROM users ORDER BY created_at DESC LIMIT 6')->fetchAll();
+        $users = $this->db->query('SELECT * FROM users ORDER BY created_at DESC')->fetchAll();
+        $userCount = count($users);
+        $jokes = $this->db->query('SELECT * FROM jokes ORDER BY created_at DESC')->fetchALL();
+        $jokeCount = count($jokes);
+        $categories = $this->db->query('SELECT * FROM categories ORDER BY created_at DESC')->fetchAll();
+        $categoryCount = count($categories);
 
         loadView('home', [
-            'listings'=> $listings
+            'users' => $users,
+            'jokes' => $jokes,
+            'categories' => $categories,
+            'categoryCount' => $categoryCount,
+            'jokeCount' => $jokeCount,
+            'userCount' => $userCount,
         ]);
 
     }

@@ -66,9 +66,9 @@ if ($authenticated->isAuthenticated()){
         <?php
         if ($authenticated->isAuthenticated()):
             ?>
-            <p class="text-zinc-300 ">NickName &gt</p>
+            <p class="text-zinc-300 "><?= Session::get('user')['nickname'] ?></p>
 
-            <form method="POST" action="usersAuth/logout" class="">
+            <form method="POST" action="/auth/logout">
                 <button class="pb-2 px-1 text-text-zinc-700-200 hover:text-sky-300
                      border-0 border-b-2 hover:border-b-sky-500
                      transition ease-in-out duration-500">
@@ -78,13 +78,13 @@ if ($authenticated->isAuthenticated()){
         <?php
         else:
             ?>
-            <p><a href="/usersAuth/login"
+            <p><a href="/auth/login"
                   class="pb-2 px-1 text-text-zinc-700-200 hover:text-sky-300
                      border-0 border-b-2 hover:border-b-sky-500
                      transition ease-in-out duration-500">
                     Login
                 </a></p>
-            <p><a href="/usersAuth/create"
+            <p><a href="/auth/register"
                   class="pb-2 px-1 text-text-zinc-700-200 hover:text-sky-300
                      border-0 border-b-2 hover:border-b-sky-500
                      transition ease-in-out duration-500">

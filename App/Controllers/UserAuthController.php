@@ -97,7 +97,7 @@ class UserAuthController
         }
 
       if (!Validation::string($nickName, 2, 50)) {
-          $errors['nickname'] = 'Nickname Name must be between 2 and 50 characters';
+          $errors['nickname'] = 'Given Name must be between 2 and 50 characters';
       }
 
         if (!Validation::string($password, 6, 50)) {
@@ -168,14 +168,14 @@ class UserAuthController
      *
      * @return void
      */
-    public function logout()
+    public function logout(): void
     {
         Session::clearAll();
 
         $params = session_get_cookie_params();
         setcookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
 
-        redirect('usersAuth/login');
+        redirect('/');
     }
 
     /**
