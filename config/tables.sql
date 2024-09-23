@@ -9,14 +9,14 @@
 -- --------------------------------------------------------------------------------------------
 -- Make the DB active for commands
 -- --------------------------------------------------------------------------------------------
-USE xxx_php_mvc_jokes;
+USE ym_php_mvc_jokes;
 
 
 -- --------------------------------------------------------------------------------------------
 -- Drop Categories Table and Recreate
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `xxx_php_mvc_jokes`.`categories`;
-CREATE TABLE `xxx_php_mvc_jokes`.`categories`
+DROP TABLE IF EXISTS `ym_php_mvc_jokes`.`categories`;
+CREATE TABLE `ym_php_mvc_jokes`.`categories`
 (
     `id`         BIGINT UNSIGNED AUTO_INCREMENT,
     `name`       VARCHAR(64) NOT NULL DEFAULT 'Unknown',
@@ -35,8 +35,8 @@ CREATE TABLE `xxx_php_mvc_jokes`.`categories`
 -- --------------------------------------------------------------------------------------------
 -- Drop Jokes Table and Recreate
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `xxx_php_mvc_jokes`.`jokes`;
-CREATE TABLE `xxx_php_mvc_jokes`.`jokes`
+DROP TABLE IF EXISTS `ym_php_mvc_jokes`.`jokes`;
+CREATE TABLE `ym_php_mvc_jokes`.`jokes`
 (
     `id`          BIGINT UNSIGNED AUTO_INCREMENT,
     `joke`        TEXT         NOT NULL,
@@ -58,8 +58,8 @@ CREATE TABLE `xxx_php_mvc_jokes`.`jokes`
 -- --------------------------------------------------------------------------------------------
 -- Drop Users Table and Recreate
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `xxx_php_mvc_jokes`.`users`;
-CREATE TABLE `xxx_php_mvc_jokes`.`users`
+DROP TABLE IF EXISTS `ym_php_mvc_jokes`.`users`;
+CREATE TABLE `ym_php_mvc_jokes`.`users`
 (
     `id`            BIGINT UNSIGNED AUTO_INCREMENT,
     `nickname`      VARCHAR(64)  NOT NULL,
@@ -84,18 +84,18 @@ CREATE TABLE `xxx_php_mvc_jokes`.`users`
 -- --------------------------------------------------------------------------------------------
 -- Seed Users Table
 -- Default password used below is: Password123
--- Create your own hashed passwords by visiting http://xxx-mvc-jokes.text/auth/password
+-- Create your own hashed passwords by visiting http://ym-mvc-jokes.text/auth/password
 -- --------------------------------------------------------------------------------------------
-INSERT INTO `xxx_php_mvc_jokes`.`users` (`id`, `nickname`, `given_name`, `email`, `user_password`, `created_at`)
+INSERT INTO `ym_php_mvc_jokes`.`users` (`id`, `nickname`, `given_name`, `email`, `user_password`, `created_at`)
 VALUES (1, 'X', 'Unknown', 'no-reply@example.com', '1234567890', '1970-01-01 00:00:01');
 
 
-INSERT INTO `xxx_php_mvc_jokes`.`users` (`id`, `nickname`, `given_name`, `email`, `user_password`, `created_at`)
+INSERT INTO `ym_php_mvc_jokes`.`users` (`id`, `nickname`, `given_name`, `email`, `user_password`, `created_at`)
 VALUES (10,'Guvner', 'Administrator', 'admin@example.com',
         '$2y$12$EZymemwtvalA/Nz8H6inPeGzy945cJzxPBGZ2vCFgxUb3ushBZZ5C',
         '2024-01-01 00:01:02');
 
-INSERT INTO `users` (`id`, `nickname`, `given_name`, `family_name`, `email`, `user_password`, `created_at`)
+INSERT INTO `ym_php_mvc_jokes`.`users`  (`id`, `nickname`, `given_name`, `family_name`, `email`, `user_password`, `created_at`)
 VALUES (20, 'Ady', 'Adrian', 'Gould', 'adrian@example.com',
         '$2y$12$EZymemwtvalA/Nz8H6inPeGzy945cJzxPBGZ2vCFgxUb3ushBZZ5C',
         '2024-01-01 01:03:05');
@@ -104,7 +104,7 @@ VALUES (20, 'Ady', 'Adrian', 'Gould', 'adrian@example.com',
 -- !! Ensure you change the GIVEN_NAME and FAMILY_NAME in the seed data below                !!
 -- --------------------------------------------------------------------------------------------
 INSERT INTO `users` (`id`, `nickname`, `given_name`, `family_name`, `email`, `user_password`, `created_at`)
-VALUES (30, 'NICKNAME', 'GIVEN_NAME', 'FAMILY_NAME', 'GIVEN_NAME@example.com',
+VALUES (30, 'Yui', 'Yui', 'Migaki', 'yuimigaki1221@icloud.com',
         '$2y$12$EZymemwtvalA/Nz8H6inPeGzy945cJzxPBGZ2vCFgxUb3ushBZZ5C',
         '2024-01-01 02:03:05');
 

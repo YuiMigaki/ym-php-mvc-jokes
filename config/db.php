@@ -15,7 +15,7 @@
 return [
     'host' => '127.0.0.1',
     'port' => 3306,
-    'dbname' => 'ym-php_mvc_jokes',
-    'username' => 'xxx_php_mvc_jokes',
+    'dbname' => 'ym_php_mvc_jokes',
+    'username' => 'ym_php_mvc_jokes',
     'password' => 'Password1234'
 ];

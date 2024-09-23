@@ -68,7 +68,7 @@ if ($authenticated->isAuthenticated()){
             ?>
             <p class="text-zinc-300 ">NickName &gt</p>
 
-            <form method="POST" action="/" class="">
+            <form method="POST" action="usersAuth/logout" class="">
                 <button class="pb-2 px-1 text-text-zinc-700-200 hover:text-sky-300
                      border-0 border-b-2 hover:border-b-sky-500
                      transition ease-in-out duration-500">

@@ -52,12 +52,22 @@ loadPartial('navigation');
                 </section>
 
                 <section class="mb-4">
+                    <label for="nickName" class="mt-4 pb-1">Nickname:</label>
+                    <input type="text" id="nickName"
+                           name="nickname" placeholder="Nickname"
+                           class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
+                           value="<?= $user['nickname'] ?? ($user['given_name'] ?? '') ?>"/>
+                </section>
+
+                <section class="mb-4">
                     <label for="FamilyName" class="mt-4 pb-1">Family Name:</label>
                     <input type="text" id="FamilyName"
                            name="family_name" placeholder="Family Name"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $user['family_name'] ?? '' ?>"/>
                 </section>
+
+
 
                 <section class="mb-4">
                     <label for="Email" class="mt-4 pb-1">Email:</label>

@@ -74,11 +74,11 @@ class UserAuthController
     {
         $givenName = $_POST['given_name'] ?? null;
         $familyName = $_POST['family_name'] ?? null;
+        $nickName = $_POST['nickname'] ?? null;
         $email = $_POST['email'] ?? null;
-        $city = $_POST['city'] ?? null;
-        $state = $_POST['state'] ?? null;
         $password = $_POST['password'] ?? null;
         $passwordConfirmation = $_POST['password_confirmation'] ?? null;
+
 
         $errors = [];
 
@@ -91,9 +91,14 @@ class UserAuthController
             $errors['given_name'] = 'Given Name must be between 2 and 50 characters';
         }
 
+
         if (!Validation::string($familyName, 0, 50)) {
             $errors['family_name'] = 'Family Name is optional';
         }
+
+      if (!Validation::string($nickName, 2, 50)) {
+          $errors['nickname'] = 'Given Name must be between 2 and 50 characters';
+      }
 
         if (!Validation::string($password, 6, 50)) {
             $errors['password'] = 'Password must be at least 6 characters';
@@ -109,7 +114,9 @@ class UserAuthController
                 'user' => [
                     'given_name' => $givenName,
                     'family_name' => $familyName,
+                    'nickname' => $nickName,
                     'email' => $email,
+
                 ]
             ]);
             exit;
@@ -134,11 +141,12 @@ class UserAuthController
         $params = [
             'given_name' => $givenName,
             'family_name' => $familyName,
+            'nickname' => $nickName,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT)
         ];
 
-        $this->db->query('INSERT INTO users (given_name, family_name, email, user_password) VALUES (:given_name, :family_name, :email, :password)', $params);
+        $this->db->query('INSERT INTO users (given_name, family_name, nickname, email, user_password) VALUES (:given_name, :family_name, :nickname, :email, :password)', $params);
 
         // Get new user ID
         $userId = $this->db->conn->lastInsertId();
@@ -148,6 +156,7 @@ class UserAuthController
             'id' => $userId,
             'given_name' => $givenName,
             'family_name' => $familyName,
+            'nickname' => $nickName,
             'email' => $email,
         ]);
 
@@ -166,7 +175,7 @@ class UserAuthController
         $params = session_get_cookie_params();
         setcookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
 
-        redirect('/');
+        redirect('usersAuth/login');
     }
 
     /**
@@ -228,6 +237,7 @@ class UserAuthController
             'id' => $user->id,
             'given_name' => $user->given_name,
             'family_name' => $user->family_name,
+            'nickname' => $user->nickname,
             'email' => $user->email,
         ]);
 
