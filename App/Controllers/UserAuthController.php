@@ -97,7 +97,7 @@ class UserAuthController
         }
 
       if (!Validation::string($nickName, 2, 50)) {
-          $errors['nickname'] = 'Given Name must be between 2 and 50 characters';
+          $errors['nickname'] = 'Nickname Name must be between 2 and 50 characters';
       }
 
         if (!Validation::string($password, 6, 50)) {

@@ -45,7 +45,7 @@ class UserController
     // TODO: Create the index method
     public function index()
     {
-        $sql = "SELECT * FROM users ORDER BY given_name, family_name, created_at";
+        $sql = "SELECT * FROM users ORDER BY nickname, email, created_at";
 
         $users = $this->db->query($sql)->fetchAll();
 
@@ -105,8 +105,9 @@ class UserController
         $query = "SELECT * FROM users 
                   WHERE given_name LIKE :keywords 
                      OR family_name LIKE :keywords 
+                     OR nickname LIKE :keywords 
                      OR email LIKE :keywords 
-                  ORDER BY given_name, family_name ";
+                  ORDER BY given_name, family_name ,nickname ";
 
         $params = [
             'keywords' => "%{$keywords}%",
@@ -141,13 +142,13 @@ class UserController
      */
     public function store()
     {
-        $allowedFields = ['given_name', 'family_name', 'email', 'user_password', 'confirm_password',];
+        $allowedFields = ['given_name', 'family_name', 'nickname', 'email', 'user_password', 'confirm_password',];
 
         $newUserData = array_intersect_key($_POST, array_flip($allowedFields));
         $newUserData['user_id'] = Session::get('user')['id'];
         $newUserData = array_map('sanitize', $newUserData);
 
-        $requiredFields = ['given_name', 'family_name', 'email',];
+        $requiredFields = ['given_name', 'family_name', 'nickname', 'email',];
 
         $errors = [];
 
@@ -270,14 +271,14 @@ class UserController
             return redirect('/users/' . $user->id);
         }
 
-        $allowedFields = ['given_name', 'family_name', 'user_password', 'confirm_password',];
+        $allowedFields = ['given_name', 'family_name', 'nickname', 'user_password', 'confirm_password',];
 
         $updateValues = array_intersect_key($_POST, array_flip($allowedFields)) ?? [];
 
         $updateValues = array_map('sanitize', $updateValues);
 
 
-        $requiredFields = ['given_name', 'family_name',];
+        $requiredFields = ['given_name', 'family_name','nickname'];
 
         $errors = [];
 

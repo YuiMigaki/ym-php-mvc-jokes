@@ -15,7 +15,7 @@
  *
  */
 
-$pageTitle = "Add | Users | XXX-MVC-Jokes";
+$pageTitle = "Add | Users | YM-PHP-MVC-Jokes";
 
 loadPartial("header", ["pageTitle"=>$pageTitle]);
 loadPartial('navigation');

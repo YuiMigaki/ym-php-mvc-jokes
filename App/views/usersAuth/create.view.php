@@ -27,7 +27,7 @@ loadPartial('navigation'); ?>
                 'errors' => $errors ?? []
             ]) ?>
 
-            <form method="POST" action="/auth/register">
+            <form method="POST" action="/usersAuth/create">
 
                 <section class="mb-4">
                     <label for="GivenName" class="mt-4 pb-1">Given Name:</label>
@@ -43,6 +43,14 @@ loadPartial('navigation'); ?>
                            name="family_name" placeholder="Family Name"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $user['family_name'] ?? '' ?>"/>
+                </section>
+
+                <section class="mb-4">
+                    <label for="nickname" class="mt-4 pb-1">Nickname:</label>
+                    <input type="text" id="nickname"
+                           name="nickname" placeholder="nickname"
+                           class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
+                           value="<?= $user['nickname'] ?? '' ?>"/>
                 </section>
 
                 <section class="mb-4">
