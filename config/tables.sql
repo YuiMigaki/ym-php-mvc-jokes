@@ -147,4 +147,3 @@ INSERT INTO `categories`(`name`,`created_at`)
 
 
 
-

@@ -38,7 +38,15 @@ class StaticPageController
     public function index()
     {
         // TODO: Crete the method code for the home page
-        loadView('home');
+        $listings = $this->db->query('SELECT * FROM users ORDER BY created_at DESC LIMIT 6')->fetchAll();
+
+        loadView('home', [
+            'listings'=> $listings
+        ]);
+
+
+
+
     }
 
     /*
