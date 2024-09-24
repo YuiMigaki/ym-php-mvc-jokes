@@ -31,7 +31,7 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
             </p>
             <form method="GET" action="/users/search" class="block mx-5">
                 <input type="text" name="keywords" placeholder="User search..."
-                       class="w-full md:w-auto px-4 py-2 focus:outline-none"/>
+                       class="w-full md:w-auto px-4 py-2 focus:outline-none text-black"/>
                 <button class="w-full md:w-auto
                            bg-sky-500 hover:bg-sky-600
                            text-white
@@ -60,7 +60,7 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
                 <article class="w-full bg-white shadow rounded grid grid-cols-12">
                     <header class="col-span-4 bg-zinc-700 text-zinc-200 text-lg p-4 rounded-l flex-0">
                         <h4>
-                            <?= $user->given_name ?> <?= $user->family_name ?>
+                           <?= $user->nickname ?>
                         </h4>
                     </header>
                     <section class="col-span-6 flex flex-row py-4 gap-4 text-zinc-600 justify-items-start">
@@ -68,8 +68,8 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
                             <img class="w-16 h-16 " src="https://dummyimage.com/200x200/c11111/fff&text=Image+Here"
                                  alt="Avatar for <?= $user->given_name ?> <?= $user->family_name ?>">
                         </p>
+                        <p class="align-middle">Email: <?= $user->email ?></p>
                         <p class="align-middle">Added: <?= $user->created_at ?></p>
-                        <p class="align-middle">Last Update: <?= $user->updated_at ?? 'n/a' ?></p>
                     </section>
                     <a href="/users/<?= $user->id ?>"
                        class="col-span-2 text-center text-zinc-900 font-medium

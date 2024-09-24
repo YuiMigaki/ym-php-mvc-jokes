@@ -15,15 +15,33 @@
  * Static Page Endpoints
  */
 $router->get('/', 'StaticPageController@index');
+$router->get('/about', 'StaticPageController@about');
 
 /* ----------------------------------------------------------------------------
  * Jokes Endpoints
  */
+$router->get('/jokes', 'JokeController@index');
+$router->get('/jokes/create', 'JokeController@create', ['auth']);
+$router->get('/jokes/edit/{id}', 'JokeController@edit', ['auth']);
+$router->get('/jokes/search', 'JokeController@search');
+$router->get('/jokes/{id}', 'JokeController@show');
 
+$router->post('/jokes', 'JokeController@store', ['auth']);
+$router->put('/jokes/{id}', 'JokeController@update', ['auth']);
+$router->delete('/jokes/{id}', 'JokeController@destroy', ['auth']);
 
 /* ----------------------------------------------------------------------------
  * Categories Endpoints
  */
+$router->get('/categories', 'CategoryController@index');
+$router->get('/categories/create', 'CategoryController@create', ['auth']);
+$router->get('/categories/edit/{id}', 'CategoryController@edit', ['auth']);
+$router->get('/categories/search', 'CategoryController@search');
+$router->get('/categories/{id}', 'CategoryController@show');
+
+$router->post('/categories', 'CategoryController@store', ['auth']);
+$router->put('/categories/{id}', 'CategoryController@update', ['auth']);
+$router->delete('/categories/{id}', 'CategoryController@destroy', ['auth']);
 
 
 

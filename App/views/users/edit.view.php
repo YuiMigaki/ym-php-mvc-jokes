@@ -45,7 +45,7 @@ loadPartial('navigation');
                     </h2>
 
                     <div class="mb-4">
-                        <label for="GivenName" class="mt-4 pb-1">Family Name:</label>
+                        <label for="GivenName" class="mt-4 pb-1">Given Name:</label>
                         <input type="text" placeholder="Given Name"
                                id="GivenName" name="given_name"
                                class="w-full px-4 py-2 border rounded focus:outline-none"
@@ -53,7 +53,7 @@ loadPartial('navigation');
                     </div>
 
                     <div class="mb-4">
-                        <label for="FamilyName" class="mt-4 pb-1">Given Name:</label>
+                        <label for="FamilyName" class="mt-4 pb-1">Family Name:</label>
                         <input type="text"placeholder="Family Name"
                                id="FamilyName" name="family_name"
                                class="w-full px-4 py-2 border rounded focus:outline-none"

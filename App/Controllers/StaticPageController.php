@@ -65,5 +65,8 @@ class StaticPageController
     {
         // TODO: Crete the method code for the about page
 
+        loadView('about');
+
+
     }
 }
