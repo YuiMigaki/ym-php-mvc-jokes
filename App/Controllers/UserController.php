@@ -30,7 +30,7 @@ class UserController
     protected $db;
 
     /**
-     * UserAuthController Constructor
+     * UserController Constructor
      *
      * Instantiate the database connection for use in this class
      * storing the connection in the protected <code>$db</code>
@@ -45,6 +45,11 @@ class UserController
     }
 
     // TODO: Create the index method
+    /**
+     * Display a list of users.
+     *
+     * @return void
+     */
     public function index()
     {
         $sql = "SELECT * FROM users ORDER BY nickname, email, created_at";

@@ -23,6 +23,16 @@ class CreatePasswordController
 {
     protected $db;
 
+    /**
+     * CreatePasswordController Constructor
+     *
+     * Instantiate the database connection for use in this class
+     * storing the connection in the protected <code>$db</code>
+     * property.
+     *
+     * @throws \Exception
+     */
+
     public function __construct()
     {
         $config = require basePath('config/db.php');
@@ -30,7 +40,7 @@ class CreatePasswordController
     }
 
     /*
-     * Show the latest jokes
+     * Show the password creation form or process the submitted password.
      *
      * @return void
      */

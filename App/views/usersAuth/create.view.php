@@ -59,7 +59,7 @@ loadPartial('navigation');
                 </section>
 
                 <section class="mb-4">
-                    <label for="nickname" class="mt-4 pb-1">Nickname:</label>
+                    <label for="nickname" class="mt-4 pb-1">Nickname: (optional)</label>
                     <input type="text" id="nickname"
                            name="nickname" placeholder="nickname"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"

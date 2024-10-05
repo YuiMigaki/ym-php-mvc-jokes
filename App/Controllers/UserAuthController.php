@@ -82,19 +82,15 @@ class UserAuthController
         $errors = [];
 
         // Validation
-        if (!Validation::email($email)) {
-            $errors['email'] = 'Please enter a valid email address';
-        }
-
         if (!Validation::string($givenName, 2, 50)) {
             $errors['given_name'] = 'Given Name must be between 2 and 50 characters';
         }
-
-
-        if (!Validation::string($familyName, 0, 50)) {
-            $errors['family_name'] = 'Family Name is optional';
+        if (!Validation::string($familyName, 2, 50)) {
+            $errors['family_name'] = 'Family Name  must be between 2 and 50 characters';
         }
-
+        if (!Validation::email($email)) {
+            $errors['email'] = 'Please enter a valid email address';
+        }
         if (!Validation::string($password, 6, 50)) {
             $errors['password'] = 'Password must be at least 6 characters';
         }

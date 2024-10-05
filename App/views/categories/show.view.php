@@ -90,9 +90,6 @@ loadPartial('navigation');
 
             </section>
 
-
-
-
         </section>
 
     </article>

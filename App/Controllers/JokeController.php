@@ -36,7 +36,7 @@ class JokeController
     protected $db;
 
     /**
-     * UserAuthController Constructor
+     * JokeController Constructor
      *
      * Instantiate the database connection for use in this class
      * storing the connection in the protected <code>$db</code>
@@ -50,6 +50,11 @@ class JokeController
         $this->db = new Database($config);
     }
 
+    /**
+     * Display a list of jokes.
+     *
+     * @return void
+     */
     public function index()
     {
         $jokes = $this->db->query('SELECT * FROM jokes ORDER BY created_at DESC')->fetchAll();
@@ -59,6 +64,11 @@ class JokeController
         ]);
     }
 
+    /**
+     * Show the joke creation form.
+     *
+     * @return void
+     */
     public function create()
     {
         loadView('jokes/create');
@@ -146,7 +156,7 @@ class JokeController
 
             // Return success response
             echo json_encode(['success' => true]);
-            return;
+            exit;
         }
     }
 
@@ -303,13 +313,10 @@ class JokeController
 
             echo json_encode(['status' => 'success']);
 
-                return;
+            exit;
             }
 
         }
-
-
-
 
     /**
      * Search jokes by keywords
@@ -336,10 +343,5 @@ class JokeController
         ]);
 
     }
-    public function script()
-    {
-        loadView('jokes/script', );
-    }
-
 
 }

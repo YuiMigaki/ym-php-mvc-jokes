@@ -22,19 +22,35 @@ use Framework\Database;
 
 class StaticPageController
 {
+    /* Properties */
+
+    /**
+     * @var Database
+     */
     protected $db;
 
+
+    /**
+     * StaticPageController Constructor
+     *
+     * Instantiate the database connection for use in this class
+     * storing the connection in the protected <code>$db</code>
+     * property.
+     *
+     * @throws \Exception
+     */
     public function __construct()
     {
         $config = require basePath('config/db.php');
         $this->db = new Database($config);
     }
 
-    /*
+    /**
      * Show the home page
      *
      * @return void
-     */
+     * **/
+
     public function index()
     {
         // TODO: Crete the method code for the home page
@@ -62,27 +78,27 @@ class StaticPageController
             'jokeContent' => $jokeContent
 
         ]);
-
-
-
-
     }
 
 
-    /*
+    /**
      * Show the about static page
      *
      * @return void
-     */
+     **/
     public function about()
     {
         // TODO: Crete the method code for the about page
 
         loadView('about');
-
-
     }
 
+
+    /**
+     * Search for jokes, users, or categories based on keywords.
+     *
+     * @return void
+     */
     public function search()
     {
 

@@ -86,7 +86,7 @@ loadPartial('navigation');
                     var jokeMarkdown = simplemde.value();
                     $.ajax({
                         url: '/jokes/<?= $joke->id ?>',
-                        type: 'POST',
+                        type: 'POST', // This POST will submit the form data to the server.
                         data: {
                             joke: jokeMarkdown,
                             title: document.getElementById('Title').value,
@@ -106,6 +106,7 @@ loadPartial('navigation');
                             if (response.status === 'success') {
                                 window.location.href = '/jokes';
                             } else {
+                                // Clear previous errors
                                 $('.error-messages').remove();
 
                                 // Handle validation errors

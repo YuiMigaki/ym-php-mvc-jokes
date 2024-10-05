@@ -28,7 +28,7 @@ class CategoryController
     protected $db;
 
     /**
-     * UserAuthController Constructor
+     * CategoryController Constructor
      *
      * Instantiate the database connection for use in this class
      * storing the connection in the protected <code>$db</code>
@@ -42,6 +42,12 @@ class CategoryController
         $this->db = new Database($config);
     }
 
+
+    /**
+     * Display a list of categories.
+     *
+     * @return void
+     */
     public function index()
     {
         $categories = $this->db->query('SELECT * FROM categories ORDER BY created_at DESC')->fetchAll();
@@ -51,6 +57,12 @@ class CategoryController
         ]);
     }
 
+
+    /**
+     * Show the category creation form.
+     *
+     * @return void
+     */
     public function create()
     {
         loadView('categories/create');

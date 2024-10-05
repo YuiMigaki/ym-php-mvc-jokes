@@ -100,10 +100,6 @@ loadPartial('navigation');
                      alt="">
 
             </section>
-
-
-
-
         </section>
 
     </article>

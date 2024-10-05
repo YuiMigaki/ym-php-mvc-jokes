@@ -18,9 +18,6 @@ $pageTitle = "Create | Jokes | YM-PHP-MVC-Jokes";
 loadPartial("header", ["pageTitle"=>$pageTitle]);
 loadPartial('navigation');
 
-//require_once __DIR__ . '/../../../vendor/autoload.php';
-//use Parsedown;
-
 ?>
 
 <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg flex flex-col flex-grow">
