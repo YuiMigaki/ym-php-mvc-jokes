@@ -66,7 +66,9 @@ loadPartial('navigation');
                     A Brief Overview of the Application
                 </h4>
             </header>
-            <p>This application is a simple web application using PHP and elements of the MVC development methodology owned by RIoT Systems (Robotics & Internet of Things), a Perth based educational and development company who specialise in IoT, Robotics and Web Application systems.
+            <p>This application is a simple web application using PHP and elements of the MVC development methodology
+                owned by RIoT Systems (Robotics & Internet of Things), a Perth based educational and development company
+                who specialise in IoT, Robotics and Web Application systems.
         </section>
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">
@@ -80,7 +82,8 @@ loadPartial('navigation');
                 <dd class="col-span-4">
                     <p><strong>PHP</strong></p>
                     <p>
-                        Stands for Hypertext Preprocessor. It is an open-source programming language designed for developing website.</p>
+                        Stands for Hypertext Preprocessor. It is an open-source programming language designed for
+                        developing website.</p>
                     <a href="https://www.php.net/manual/en/intro-whatis.php"
                        class="underline underline-offset-2 text-zinc-900 rounded border-2 border-transparent hover:text-white hover:bg-blue-500 hover:border-blue-500">
                         https://www.php.net/manual/en/intro-whatis.php
@@ -90,7 +93,8 @@ loadPartial('navigation');
                 <dt class="col-span-1">Servers:</dt>
                 <dd class="col-span-4">
                     <p><strong>XAMPP and WAMP</strong></p>
-                    <p>These are the most popular PHP web servers for the Windows operating system. They are lightweight and make it easy to host applications locally on a Windows machine.</p>
+                    <p>These are the most popular PHP web servers for the Windows operating system. They are lightweight
+                        and make it easy to host applications locally on a Windows machine.</p>
                 </dd>
             </dl>
         </section>

@@ -57,7 +57,7 @@ class CreatePasswordController
     public function index()
     {
 
-        if (!isset($_POST['password']))        {
+        if (!isset($_POST['password'])) {
             loadView('create-password', [
             ]);
 

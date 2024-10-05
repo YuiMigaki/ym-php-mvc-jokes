@@ -44,7 +44,7 @@ loadPartial('navigation');
                            class="grow px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"/>
                 </section>
 
-                <section  class="">
+                <section class="">
                     <button type="submit"
                             class="w-1/4 bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded
                                    focus:outline-none transition ease-in-out duration-500">
@@ -52,23 +52,23 @@ loadPartial('navigation');
                     </button>
                 </section>
 
-            <?php
-            if (isset($passwordHash)):
-                ?>
-                <section class="flex flex-row my-8 gap-8 p-2">
-                    <div class="grow flex flex-row bg-red-700 text-white shadow rounded">
-                    <h4 class="flex-0 w-1/4 p-2 -ml-2 bg-red-400 text-black text-lg rounded-l">
-                        Hashed Password:
-                    </h4>
-                    <p class="grow p-2">
-                        <?= $passwordHash ?>
-                    </p>
-                    </div>
-                </section>
+                <?php
+                if (isset($passwordHash)):
+                    ?>
+                    <section class="flex flex-row my-8 gap-8 p-2">
+                        <div class="grow flex flex-row bg-red-700 text-white shadow rounded">
+                            <h4 class="flex-0 w-1/4 p-2 -ml-2 bg-red-400 text-black text-lg rounded-l">
+                                Hashed Password:
+                            </h4>
+                            <p class="grow p-2">
+                                <?= $passwordHash ?>
+                            </p>
+                        </div>
+                    </section>
 
-            <?php
-            endif;
-            ?>
+                <?php
+                endif;
+                ?>
             </form>
 
 

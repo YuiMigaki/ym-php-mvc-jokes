@@ -24,7 +24,6 @@
  */
 
 
-
 namespace App\Controllers;
 
 use Framework\Authorisation;
@@ -192,8 +191,7 @@ class JokeController
             return;
         }
         // Authorisation
-        if (!Authorisation::isOwner($joke->user_id))
-        {
+        if (!Authorisation::isOwner($joke->user_id)) {
             Session::setFlashMessage('error_message', 'You are not authorised to delete this joke');
             return redirect('/jokes/' . $joke->id);
         }
@@ -227,8 +225,7 @@ class JokeController
             return;
         }
 
-        if (!Authorisation::isOwner($joke->user_id))
-        {
+        if (!Authorisation::isOwner($joke->user_id)) {
             Session::setFlashMessage('error_message', 'You are not authorised to update this joke');
             return redirect('/jokes/' . $joke->id);
         }
@@ -262,8 +259,7 @@ class JokeController
             return;
         }
 
-        if (!Authorisation::isOwner($joke->user_id))
-        {
+        if (!Authorisation::isOwner($joke->user_id)) {
             Session::setFlashMessage('error_message', 'You are not authorised to update this joke');
             return redirect('/jokes/' . $joke->id);
         }
@@ -271,7 +267,7 @@ class JokeController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
 
-            $allowedFields = ['title','joke', 'category_name', 'tags', 'author_name'];
+            $allowedFields = ['title', 'joke', 'category_name', 'tags', 'author_name'];
 
             $updateValues = [];
 
@@ -279,12 +275,12 @@ class JokeController
 
             $updateValues = array_map('sanitize', $updateValues);
 
-            $requiredFields = ['title','joke', 'category_name', 'tags', 'author_name'];
+            $requiredFields = ['title', 'joke', 'category_name', 'tags', 'author_name'];
 
             $errors = [];
 
-            foreach($requiredFields as $field) {
-                if(empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+            foreach ($requiredFields as $field) {
+                if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
                     $errors[$field] = ucfirst($field) . ' is required';
                 }
             }
@@ -301,32 +297,32 @@ class JokeController
                 echo json_encode(['status' => 'error', 'errors' => $errors]);
                 return;
             }
-                // Submit to database
-                $updateFields = [];
+            // Submit to database
+            $updateFields = [];
 
-                $updateValues['updated_at'] = date('Y-m-d H:i:s');
+            $updateValues['updated_at'] = date('Y-m-d H:i:s');
 
-                foreach (array_keys($updateValues) as $field) {
-                    $updateFields[] = "{$field} = :{$field}";
-                }
+            foreach (array_keys($updateValues) as $field) {
+                $updateFields[] = "{$field} = :{$field}";
+            }
 
-                $updateFields = implode(', ', $updateFields);
+            $updateFields = implode(', ', $updateFields);
 
-                $updateQuery = "UPDATE jokes SET $updateFields WHERE id = :id";
+            $updateQuery = "UPDATE jokes SET $updateFields WHERE id = :id";
 
-                $updateValues['id'] = $id;
-                $this->db->query($updateQuery, $updateValues);
+            $updateValues['id'] = $id;
+            $this->db->query($updateQuery, $updateValues);
 
 
-                Session::setFlashMessage('success_message', 'Joke Updated');
+            Session::setFlashMessage('success_message', 'Joke Updated');
 
 
             echo json_encode(['status' => 'success']);
 
             exit;
-            }
-
         }
+
+    }
 
     /**
      * Search jokes by keywords

@@ -25,7 +25,7 @@
 
 $pageTitle = "Create | Jokes | YM-PHP-MVC-Jokes";
 
-loadPartial("header", ["pageTitle"=>$pageTitle]);
+loadPartial("header", ["pageTitle" => $pageTitle]);
 loadPartial('navigation');
 
 ?>
@@ -41,11 +41,11 @@ loadPartial('navigation');
 
         <section>
 
-        <?= loadPartial('errors', [
-            'errors' => $errors ?? []
-        ]) ?>
+            <?= loadPartial('errors', [
+                'errors' => $errors ?? []
+            ]) ?>
 
-            <form id="jokeForm" method="POST" action="/jokes" >
+            <form id="jokeForm" method="POST" action="/jokes">
 
                 <h2 class="text-2xl font-bold mb-6 text-left text-gray-500">
                     Joke Information
@@ -60,10 +60,10 @@ loadPartial('navigation');
                 </section>
 
                 <section class="mb-4">
-                        <label for="Joke" class="mt-4 pb-1">Joke Content:</label>
-                        <textarea id="Joke"
-                        name="joke" placeholder="Joke Content"
-                        class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"><?= $joke['joke'] ?? '' ?>
+                    <label for="Joke" class="mt-4 pb-1">Joke Content:</label>
+                    <textarea id="Joke"
+                              name="joke" placeholder="Joke Content"
+                              class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"><?= $joke['joke'] ?? '' ?>
                       </textarea>
                 </section>
 
@@ -73,7 +73,7 @@ loadPartial('navigation');
                     <input type="text" id="CategoryName"
                            name="category_name" placeholder="Category"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
-                           value="<?= $joke['category_name'] ?? ''?>"/>
+                           value="<?= $joke['category_name'] ?? '' ?>"/>
                 </section>
 
                 <section class="mb-4">
@@ -83,7 +83,6 @@ loadPartial('navigation');
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $joke['tags'] ?? '' ?>"/>
                 </section>
-
 
 
                 <section class="mb-4">
@@ -122,7 +121,7 @@ loadPartial('navigation');
                     }
                 });
 
-                document.getElementById('jokeForm').addEventListener('submit', function(event) {
+                document.getElementById('jokeForm').addEventListener('submit', function (event) {
                     event.preventDefault();
                     var jokeMarkdown = simplemde.value();
                     $.ajax({
@@ -136,7 +135,7 @@ loadPartial('navigation');
                             tags: document.getElementById('Tags').value,
                             author_name: document.getElementById('AuthorName').value,
                         },
-                        success: function(response) {
+                        success: function (response) {
                             if (response.success) {
                                 console.log('Joke saved successfully');
                                 window.location.href = '/jokes';
@@ -169,7 +168,7 @@ loadPartial('navigation');
                                 }
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             console.error('Error saving joke:', error);
                         },
                     });

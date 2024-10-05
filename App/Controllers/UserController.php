@@ -55,6 +55,7 @@ class UserController
     }
 
     // TODO: Create the index method
+
     /**
      * Display a list of users.
      *
@@ -235,7 +236,6 @@ class UserController
         }
 
 
-
         if (!empty($_POST['user_password'])) {
             $hashOptions = [
                 'cost' => 12,
@@ -349,7 +349,7 @@ class UserController
         $updateValues = array_map('sanitize', $updateValues);
 
 
-        $requiredFields = ['given_name', 'family_name','email', 'user_password', 'confirm_password'];
+        $requiredFields = ['given_name', 'family_name', 'email', 'user_password', 'confirm_password'];
 
         $errors = [];
 

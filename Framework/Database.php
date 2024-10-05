@@ -68,7 +68,7 @@ class Database
 
     /**
      * Query the database
-     * 
+     *
      * The SQL to execute and an optional array of named parameters and values
      * are required.
      *

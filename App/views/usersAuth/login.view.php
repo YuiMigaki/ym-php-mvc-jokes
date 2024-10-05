@@ -47,7 +47,7 @@ loadPartial('navigation');
                     <input type="email" id="Email"
                            name="email" placeholder="Email Address"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
-                       />
+                    />
                 </section>
 
                 <section class="mb-4">

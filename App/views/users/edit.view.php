@@ -62,7 +62,7 @@ loadPartial('navigation');
 
                     <div class="mb-4">
                         <label for="FamilyName" class="mt-4 pb-1">Family Name:</label>
-                        <input type="text"placeholder="Family Name"
+                        <input type="text" placeholder="Family Name"
                                id="FamilyName" name="family_name"
                                class="w-full px-4 py-2 border rounded focus:outline-none"
                                value="<?= $user->family_name ?? '' ?>"/>

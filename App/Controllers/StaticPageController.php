@@ -118,39 +118,39 @@ class StaticPageController
             redirect('/');
         }
 
-            $jokeQuery = "SELECT * FROM jokes WHERE (title LIKE :keywords OR joke LIKE :keywords OR category_name LIKE :keywords OR tags LIKE :keywords OR author_name LIKE :keywords)";
-            $userQuery = "SELECT * FROM users WHERE (given_name LIKE :keywords OR family_name LIKE :keywords OR nickname LIKE :keywords OR email LIKE :keywords) ORDER BY given_name, family_name, nickname";
-            $categoryQuery = "SELECT * FROM categories WHERE (name LIKE :keywords)";
+        $jokeQuery = "SELECT * FROM jokes WHERE (title LIKE :keywords OR joke LIKE :keywords OR category_name LIKE :keywords OR tags LIKE :keywords OR author_name LIKE :keywords)";
+        $userQuery = "SELECT * FROM users WHERE (given_name LIKE :keywords OR family_name LIKE :keywords OR nickname LIKE :keywords OR email LIKE :keywords) ORDER BY given_name, family_name, nickname";
+        $categoryQuery = "SELECT * FROM categories WHERE (name LIKE :keywords)";
 
-            $params = [
-                'keywords' => "%{$keywords}%"
-            ];
+        $params = [
+            'keywords' => "%{$keywords}%"
+        ];
 
-            $jokes = $this->db->query($jokeQuery, $params)->fetchAll();
-            $users = $this->db->query($userQuery, $params)->fetchAll();
-            $categories = $this->db->query($categoryQuery, $params)->fetchAll();
+        $jokes = $this->db->query($jokeQuery, $params)->fetchAll();
+        $users = $this->db->query($userQuery, $params)->fetchAll();
+        $categories = $this->db->query($categoryQuery, $params)->fetchAll();
 
 
-            if (!empty($jokes)) {
-                loadView('/jokes/index', [
-                    'jokes' => $jokes,
-                    'keywords' => $keywords
-                ]);
-            } elseif (!empty($users)) {
-                loadView('/users/index', [
-                    'users' => $users,
-                    'keywords' => $keywords
-                ]);
-            } elseif (!empty($categories)) {
-                loadView('/categories/index', [
-                    'categories' => $categories,
-                    'keywords' => $keywords
-                ]);
-            }else {
-                loadView('home', [
-                    'keywords' => $keywords
-                ]);
-            }
+        if (!empty($jokes)) {
+            loadView('/jokes/index', [
+                'jokes' => $jokes,
+                'keywords' => $keywords
+            ]);
+        } elseif (!empty($users)) {
+            loadView('/users/index', [
+                'users' => $users,
+                'keywords' => $keywords
+            ]);
+        } elseif (!empty($categories)) {
+            loadView('/categories/index', [
+                'categories' => $categories,
+                'keywords' => $keywords
+            ]);
+        } else {
+            loadView('home', [
+                'keywords' => $keywords
+            ]);
         }
     }
+}
 

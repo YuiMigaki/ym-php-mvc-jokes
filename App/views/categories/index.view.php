@@ -25,6 +25,7 @@
  */
 
 /* Load HTML header and navigation areas */
+
 use Framework\Middleware\Authorise;
 
 $authenticated = new Authorise();
@@ -33,9 +34,10 @@ if (!$authenticated->isAuthenticated()) {
     exit;
 }
 
-$pageTitle ="Index | Categories | YM-MVC-Jokes";
+$pageTitle = "Index | Categories | YM-MVC-Jokes";
 
-loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
+loadPartial("header", ["pageTitle" => $pageTitle]);
+loadPartial('navigation');
 
 ?>
 
@@ -60,8 +62,9 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
         </header>
 
         <section class="text-xl text-zinc-500 my-8">
-            <?php if (isset($keywords) && $keywords>"") : ?>
-                <p>Search Results for: <?= htmlspecialchars($keywords) ?> [<?= count($categories ?? []) ?> category(s) found]</p>
+            <?php if (isset($keywords) && $keywords > "") : ?>
+                <p>Search Results for: <?= htmlspecialchars($keywords) ?> [<?= count($categories ?? []) ?> category(s)
+                    found]</p>
             <?php else : ?>
                 <p>All Categories</p>
             <?php endif; ?>
@@ -71,34 +74,34 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
 
         <section class="flex flex-col gap-8 ">
             <?php
-                foreach ($categories as $category):
-                    ?>
-                    <article class="w-full bg-white shadow rounded grid grid-cols-12">
-                        <header class="col-span-4 bg-zinc-700 text-zinc-200 text-lg p-4 rounded-l flex-0">
-                            <h4>
-                                <?= $category->name ?>
-                            </h4>
-                        </header>
-                        <section class="col-span-6 flex flex-row py-4 gap-4 text-zinc-600 justify-items-start">
-                            <p class="mr-4 -my-4">
-                                <img class="w-16 h-16 " src="https://dummyimage.com/200x200/c11111/fff&text=Image+Here"
-                                     alt="Avatar for <?= $category->name ?>">
-                            </p>
+            foreach ($categories as $category):
+                ?>
+                <article class="w-full bg-white shadow rounded grid grid-cols-12">
+                    <header class="col-span-4 bg-zinc-700 text-zinc-200 text-lg p-4 rounded-l flex-0">
+                        <h4>
+                            <?= $category->name ?>
+                        </h4>
+                    </header>
+                    <section class="col-span-6 flex flex-row py-4 gap-4 text-zinc-600 justify-items-start">
+                        <p class="mr-4 -my-4">
+                            <img class="w-16 h-16 " src="https://dummyimage.com/200x200/c11111/fff&text=Image+Here"
+                                 alt="Avatar for <?= $category->name ?>">
+                        </p>
 
                         <p class="align-middle pl-5"> Created: <?= $category->created_at ?></p>
-                        </section>
+                    </section>
 
-                        <a href="/categories/<?= $category->id ?>"
-                           class="col-span-2 text-center text-zinc-900 font-medium
+                    <a href="/categories/<?= $category->id ?>"
+                       class="col-span-2 text-center text-zinc-900 font-medium
                         bg-zinc-200 hover:bg-zinc-300 block
                         py-4 rounded-r
                         transition ease-in-out duration-500">
-                            Details...
-                        </a>
-                    </article>
+                        Details...
+                    </a>
+                </article>
 
-                <?php
-                endforeach;?>
+            <?php
+            endforeach; ?>
         </section>
 
     </article>

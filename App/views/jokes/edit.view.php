@@ -82,11 +82,13 @@ loadPartial('navigation');
                            value="<?= $joke->author_name ?? '' ?>"/>
                 </div>
 
-                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none">
+                <button type="submit"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none">
                     Save
                 </button>
 
-                <a href="/jokes/<?= $joke->id ?>" class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none">
+                <a href="/jokes/<?= $joke->id ?>"
+                   class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none">
                     Cancel
                 </a>
             </form>
@@ -104,7 +106,7 @@ loadPartial('navigation');
                     }
                 });
 
-                document.getElementById('jokeForm').addEventListener('submit', function(event) {
+                document.getElementById('jokeForm').addEventListener('submit', function (event) {
                     event.preventDefault();
                     var jokeMarkdown = simplemde.value();
                     $.ajax({
@@ -119,7 +121,7 @@ loadPartial('navigation');
                             _method: 'PUT' // Include this to simulate PUT
                         },
 
-                        success: function(data) {
+                        success: function (data) {
                             const response = (typeof data === 'string' ? JSON.parse(data) : data) ?? {};
                             //If data is a string that can be parsed, response will be the parsed object.
                             // If data is not a string, response will just be the value of data.
@@ -157,7 +159,7 @@ loadPartial('navigation');
                                 }
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             console.error('Error saving joke:', error);
                         },
                     });

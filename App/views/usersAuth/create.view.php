@@ -27,8 +27,8 @@ use Framework\Middleware\Authorise;
 use Framework\Session;
 
 $authenticated = new Authorise();
-if ($authenticated->isAuthenticated()){
-    $user = Session::get('user')??'n/a';
+if ($authenticated->isAuthenticated()) {
+    $user = Session::get('user') ?? 'n/a';
 }
 
 loadPartial('header');
@@ -59,7 +59,7 @@ loadPartial('navigation');
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $user['given_name'] ?? '' ?>"/>
                 </section>
-                
+
                 <section class="mb-4">
                     <label for="FamilyName" class="mt-4 pb-1">Family Name:</label>
                     <input type="text" id="FamilyName"

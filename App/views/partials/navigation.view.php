@@ -27,9 +27,9 @@ use Framework\Middleware\Authorise;
 use Framework\Session;
 
 $authenticated = new Authorise();
-if ($authenticated->isAuthenticated()){
-    $user = Session::get('user')??'n/a';
-    $Family_name = $user['family_name']??'n/a';
+if ($authenticated->isAuthenticated()) {
+    $user = Session::get('user') ?? 'n/a';
+    $Family_name = $user['family_name'] ?? 'n/a';
 }
 ?>
 

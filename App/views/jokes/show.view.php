@@ -54,7 +54,7 @@ loadPartial('navigation');
 
         </header>
 
-            <?= loadPartial('message') ?>
+        <?= loadPartial('message') ?>
         <section class="w-1/2 mx-auto bg-white shadow rounded p-4 flex flex-col">
 
             <h5 class="-mx-4 bg-zinc-700 text-zinc-200 text-2xl p-4 -mt-4 mb-4 rounded-t flex-0 flex justify-between">
@@ -65,33 +65,34 @@ loadPartial('navigation');
 
                 <section class="grow">
 
-                <h5 class="text-lg font-bold">
-                    Joke Content:
-                </h5>
-                <div class="grow text-lg text-zinc-600 mb-6">
-                    <?= $jokeContent ?? "n/a" ?>
-                </div>
+                    <h5 class="text-lg font-bold">
+                        Joke Content:
+                    </h5>
+                    <div class="grow text-lg text-zinc-600 mb-6">
+                        <?= $jokeContent ?? "n/a" ?>
+                    </div>
 
-                <h5 class="text-lg font-bold">
-                    Tags:
-                </h5>
-                <p class="grow text-lg text-zinc-600 mb-6">
-                    <?= $joke->tags ?? "n/a" ?>
-                </p>
+                    <h5 class="text-lg font-bold">
+                        Tags:
+                    </h5>
+                    <p class="grow text-lg text-zinc-600 mb-6">
+                        <?= $joke->tags ?? "n/a" ?>
+                    </p>
 
-                <h5 class="text-lg font-bold">
-                    Created by:
-                </h5>
-                <p class="grow text-lg text-zinc-600 mb-6">
-                    <?= $joke->author_name ?? "n/a" ?>
-                </p>
+                    <h5 class="text-lg font-bold">
+                        Created by:
+                    </h5>
+                    <p class="grow text-lg text-zinc-600 mb-6">
+                        <?= $joke->author_name ?? "n/a" ?>
+                    </p>
 
                     <?php
                     if (Framework\Authorisation::isOwner($joke->user_id) || Framework\Authorisation::isUser($joke->id)): ?>
-                    <form method="POST" class="border-0 border-t-1 border-zinc-300 text-lg flex flex-row">
-                        <a href="/jokes/edit/<?= $joke->id ?>" class="px-16 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded transition ease-in-out duration-500">
-                            Edit
-                        </a>
+                        <form method="POST" class="border-0 border-t-1 border-zinc-300 text-lg flex flex-row">
+                            <a href="/jokes/edit/<?= $joke->id ?>"
+                               class="px-16 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded transition ease-in-out duration-500">
+                                Edit
+                            </a>
 
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit"

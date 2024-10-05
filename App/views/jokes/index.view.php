@@ -24,6 +24,7 @@
  */
 
 /* Load HTML header and navigation areas */
+
 use Framework\Middleware\Authorise;
 
 $authenticated = new Authorise();
@@ -34,7 +35,8 @@ if (!$authenticated->isAuthenticated()) {
 
 $pageTitle = "Index | Jokes | YM-MVC-Jokes";
 
-loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
+loadPartial("header", ["pageTitle" => $pageTitle]);
+loadPartial('navigation');
 
 ?>
 
@@ -59,7 +61,7 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
         </header>
 
         <section class="text-xl text-zinc-500 my-8">
-            <?php if (isset($keywords) && $keywords>"") : ?>
+            <?php if (isset($keywords) && $keywords > "") : ?>
                 <p>Search Results for: <?= htmlspecialchars($keywords) ?> [<?= count($jokes ?? []) ?> joke(s) found]</p>
             <?php else : ?>
                 <p>All Jokes</p>
@@ -70,47 +72,49 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
 
         <section class="flex flex-row flex-wrap gap-8 justify-center ">
             <?php
-                foreach ($jokes as $joke):
-                    ?>
-                    <article class="max-w-96 min-w-64 bg-white shadow rounded p-2 flex flex-col">
-                        <header class="-mx-2 bg-zinc-700 text-zinc-200 text-lg p-4 -mt-2 mb-4 rounded-t flex-0 text-center">
-                            <h4><strong>Title: </strong><?= $joke->title ?>
+            foreach ($jokes as $joke):
+                ?>
+                <article class="max-w-96 min-w-64 bg-white shadow rounded p-2 flex flex-col">
+                    <header class="-mx-2 bg-zinc-700 text-zinc-200 text-lg p-4 -mt-2 mb-4 rounded-t flex-0 text-center">
+                        <h4><strong>Title: </strong><?= $joke->title ?>
 
-                            </h4>
-                        </header>
-                        <section class="flex-grow grid grid-cols-5">
-                            <p class="ml-4 col-span-2">
-                                <img class="w-24 h-24 " src="https://dummyimage.com/200x200/c11111/fff&text=Image+Here"
-                                     alt="">
-                            </p>
-                            <p class="col-span-3 text-zinc-600 ml-4 mt-4"><strong>Category:</strong> <?= $joke->category_name ?></p>
-                        </section>
-<!--                        <section class="flex-grow grid grid-cols-5">-->
-<!--                            <p class="col-span-3 text-zinc-600">--><?php //= $joke->tags ?><!--</p>-->
-<!--                        </section>-->
-                        <?php if(!empty($joke->tags)) : ?>
-                            <p class="col-span-3 text-zinc-600 text-center mt-4">
-                                <strong>Tags:</strong> <?= $joke-> tags ?>
-                            </p>
-                        <?php endif; ?>
-                        <footer class="-mx-2 bg-zinc-200 text-zinc-900 text-sm px-4 py-1 mt-4 -mb-2 rounded-b flex-0">
-                            <p class="block w-full text-center px-5 py-2.5 shadow-sm rounded border
+                        </h4>
+                    </header>
+                    <section class="flex-grow grid grid-cols-5">
+                        <p class="ml-4 col-span-2">
+                            <img class="w-24 h-24 " src="https://dummyimage.com/200x200/c11111/fff&text=Image+Here"
+                                 alt="">
+                        </p>
+                        <p class="col-span-3 text-zinc-600 ml-4 mt-4">
+                            <strong>Category:</strong> <?= $joke->category_name ?></p>
+                    </section>
+                    <!--                        <section class="flex-grow grid grid-cols-5">-->
+                    <!--                            <p class="col-span-3 text-zinc-600">--><?php //= $joke->tags
+                    ?><!--</p>-->
+                    <!--                        </section>-->
+                    <?php if (!empty($joke->tags)) : ?>
+                        <p class="col-span-3 text-zinc-600 text-center mt-4">
+                            <strong>Tags:</strong> <?= $joke->tags ?>
+                        </p>
+                    <?php endif; ?>
+                    <footer class="-mx-2 bg-zinc-200 text-zinc-900 text-sm px-4 py-1 mt-4 -mb-2 rounded-b flex-0">
+                        <p class="block w-full text-center px-5 py-2.5 shadow-sm rounded border
                                               text-base font-medium text-zinc-700 bg-zinc-100">
-                                Created by: <?= $joke->author_name ?>
-                            </p>
-                        </footer>
-                        <br/>
-                        <a href="/jokes/<?= $joke->id ?>"
-                           class="col-span-2 text-center text-zinc-900 font-medium
+                            Created by: <?= $joke->author_name ?>
+                        </p>
+                    </footer>
+                    <br/>
+                    <a href="/jokes/<?= $joke->id ?>"
+                       class="col-span-2 text-center text-zinc-900 font-medium
                         bg-zinc-200 hover:bg-zinc-300 block
                         py-4 rounded-r
                         transition ease-in-out duration-500">
-                            Details...
-                        </a>
-                    </article>
+                        Details...
+                    </a>
+                </article>
 
-                <?php
-                endforeach;?>
+            <?php
+            endforeach; ?>
         </section>
 
     </article>

@@ -109,7 +109,7 @@ function inspectAndDie($value)
  *
  * @return void
  */
- function dump(): void
+function dump(): void
 {
     echo "<pre class='bg-gray-100 color-black m-2 p-2 rounded shadow flex-grow text-sm'>";
     array_map(function ($x) {
@@ -123,7 +123,7 @@ function inspectAndDie($value)
  *
  * @return void
  */
- function dd(): void
+function dd(): void
 {
     echo "<pre class='bg-gray-100 color-black m-2 p-2 rounded shadow flex-grow text-sm'>";
     array_map(function ($x) {

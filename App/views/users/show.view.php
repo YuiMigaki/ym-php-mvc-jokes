@@ -54,7 +54,7 @@ loadPartial('navigation');
 
         </header>
 
-            <?= loadPartial('message') ?>
+        <?= loadPartial('message') ?>
 
         <section class="w-1/2 mx-auto bg-white shadow rounded p-4 flex flex-col">
 

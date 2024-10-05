@@ -54,7 +54,6 @@ $router->put('/categories/{id}', 'CategoryController@update', ['auth']);
 $router->delete('/categories/{id}', 'CategoryController@destroy', ['auth']);
 
 
-
 /* ----------------------------------------------------------------------------
  * Users Endpoints
  */

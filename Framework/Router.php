@@ -35,7 +35,6 @@ class Router
     protected $routes = [];
 
 
-
     /**
      * Add a new route
      *

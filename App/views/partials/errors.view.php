@@ -23,7 +23,7 @@
  *
  */
 
-if (isset($errors) && count($errors)>0): ?>
+if (isset($errors) && count($errors) > 0): ?>
     <div class="flex w-full shadow-lg rounded-lg my-4">
         <div class="bg-red-600 py-2 px-6 rounded-l-lg flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="fill-current text-white" width="20"
