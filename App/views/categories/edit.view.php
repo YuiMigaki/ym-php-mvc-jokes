@@ -1,16 +1,26 @@
 <?php
 /**
- * Category edit page
+ *   Assessment Title: AT2-POR-Pt2-MVC
+ *   Cluster:          SaaS: Front-End Dev - ICT50220 (Advanced Programming)
+ *   Qualification:    ICT50220 Diploma of Information Technology (Back End Web Development)
+ *   Name:             Yui Migaki
+ *   Student ID:       20098757
+ *   Year/Semester:    2024/S2
  *
- * This file is to edit categories
+ *   MY SUMMARY OF PORTFOLIO ACTIVITY
+ *   This portfolio activity involves implementing an online scratch course into a small MVC project that includes users, categories, and jokes.
  *
- * Filename:        edit.view.php
- * Location:        /App/views/categories
- * Project:         ym-php-mvc-jokes
- * Date Created:    6/09/2024
- * Date Updated:    5/10/2024
+ *   Category edit page
  *
- * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
+ *   This file is to edit categories
+ *
+ *   Filename:        edit.view.php
+ *   Location:        /App/views/categories
+ *   Project:         ym-php-mvc-jokes
+ *   Date Created:    6/09/2024
+ *   Date Updated:    5/10/2024
+ *
+ *   Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

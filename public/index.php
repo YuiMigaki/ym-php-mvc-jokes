@@ -1,16 +1,25 @@
 <?php
 /**
- * Main Entry Point
+ *   Assessment Title: AT2-POR-Pt2-MVC
+ *   Cluster:          SaaS: Front-End Dev - ICT50220 (Advanced Programming)
+ *   Qualification:    ICT50220 Diploma of Information Technology (Back End Web Development)
+ *   Name:             Yui Migaki
+ *   Student ID:       20098757
+ *   Year/Semester:    2024/S2
  *
- * This file serves as the main entry point for the ym-php-mvc-jokes application.
-
+ *   MY SUMMARY OF PORTFOLIO ACTIVITY
+ *   This portfolio activity involves implementing an online scratch course into a small MVC project that includes users, categories, and jokes.
  *
- * Filename:        index.php
- * Location:        public/
- * Project:         ym-php-mvc-jokes
- * Date Created:    23/08/2024
+ *   Main Entry Point
  *
- * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
+ *   This file serves as the main entry point for the ym-php-mvc-jokes application.
+ *
+ *   Filename:        index.php
+ *   Location:        public/
+ *   Project:         ym-php-mvc-jokes
+ *   Date Created:    23/08/2024
+ *
+ *   Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

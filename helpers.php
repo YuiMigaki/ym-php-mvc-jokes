@@ -1,15 +1,25 @@
 <?php
 /**
- * Helper Functions
+ *    Assessment Title: AT2-POR-Pt2-MVC
+ *    Cluster:          SaaS: Front-End Dev - ICT50220 (Advanced Programming)
+ *    Qualification:    ICT50220 Diploma of Information Technology (Back End Web Development)
+ *    Name:             Yui Migaki
+ *    Student ID:       20098757
+ *    Year/Semester:    2024/S2
  *
- * This is a file stores helper functions
+ *    MY SUMMARY OF PORTFOLIO ACTIVITY
+ *    This portfolio activity involves implementing an online scratch course into a small MVC project that includes users, categories, and jokes.
  *
- * Filename:        helpers.php
- * Location:        /
- * Project:         ym-php-mvc-jokes
- * Date Created:    23/08/2024
+ *    Helper Functions
  *
- * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
+ *    This is a file stores helper functions
+ *
+ *    Filename:        helpers.php
+ *    Location:        /
+ *    Project:         ym-php-mvc-jokes
+ *    Date Created:    23/08/2024
+ *
+ *    Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

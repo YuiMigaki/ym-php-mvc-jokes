@@ -1,15 +1,25 @@
 <?php
 /**
- * User Authorisation file
+ *   Assessment Title: AT2-POR-Pt2-MVC
+ *   Cluster:          SaaS: Front-End Dev - ICT50220 (Advanced Programming)
+ *   Qualification:    ICT50220 Diploma of Information Technology (Back End Web Development)
+ *   Name:             Yui Migaki
+ *   Student ID:       20098757
+ *   Year/Semester:    2024/S2
  *
- * This file is to check user authorisation
+ *   MY SUMMARY OF PORTFOLIO ACTIVITY
+ *   This portfolio activity involves implementing an online scratch course into a small MVC project that includes users, categories, and jokes.
  *
- * Filename:        Authorisation.php
- * Location:        Framework/
- * Project:         ym-php-mvc-jokes
- * Date Created:    23/08/2024
+ *   User Authorisation file
  *
- * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
+ *   This file is to check user authorisation
+ *
+ *   Filename:        Authorisation.php
+ *   Location:        Framework/
+ *   Project:         ym-php-mvc-jokes
+ *   Date Created:    23/08/2024
+ *
+ *   Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
