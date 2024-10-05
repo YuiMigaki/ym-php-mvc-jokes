@@ -22,8 +22,6 @@ use Framework\Validation;
 
 class CategoryController
 {
-    /* Properties */
-
     /**
      * @var Database
      */

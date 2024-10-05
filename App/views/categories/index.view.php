@@ -8,6 +8,7 @@
  * Location:        /App/views/categories
  * Project:         ym-php-mvc-jokes
  * Date Created:    6/09/2024
+ * Date Updated:    5/10/2024
  *
  * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
@@ -76,9 +77,7 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
 
                         <p class="align-middle pl-5"> Created: <?= $category->created_at ?></p>
                         </section>
-<!--                        <section class="flex-grow grid grid-cols-5">-->
-<!--                            <p class="col-span-3 text-zinc-600">--><?php //= $joke->tags ?><!--</p>-->
-<!--                        </section>-->
+
                         <a href="/categories/<?= $category->id ?>"
                            class="col-span-2 text-center text-zinc-900 font-medium
                         bg-zinc-200 hover:bg-zinc-300 block

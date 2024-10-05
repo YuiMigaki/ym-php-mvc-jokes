@@ -27,6 +27,7 @@ $router->get('/jokes/search', 'JokeController@search');
 $router->get('/jokes/{id}', 'JokeController@show');
 
 $router->post('/jokes', 'JokeController@store', ['auth']);
+//$router->post('/jokes/script', 'JokeController@script', ['auth']);
 $router->put('/jokes/{id}', 'JokeController@update', ['auth']);
 $router->delete('/jokes/{id}', 'JokeController@destroy', ['auth']);
 
