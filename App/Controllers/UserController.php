@@ -2,12 +2,14 @@
 /**
  * User Management Controller
  *
+ * This controller is to manage all the user
+ *
  * Filename:        UserController.php
  * Location:        /App/Controllers
- * Project:         XXX-mvc-jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -131,6 +133,17 @@ class UserController
     public function create()
     {
         loadView('users/create');
+
+//        $currentUserId = $_SESSION['id'] ?? null;
+//
+//
+//        if ($currentUserId !== 10) {
+//            $errors['id'] = 'You are not authorised to add new registrations.';
+//            loadView('users/create', [
+//                'errors' => $errors
+//            ]);
+//            exit;
+//        }
     }
 
     // TODO: Create the store
@@ -140,15 +153,18 @@ class UserController
      *
      * @return void
      */
-    public function store()
+    public function store($params)
+
     {
+
+
         $allowedFields = ['given_name', 'family_name', 'nickname', 'email', 'user_password', 'confirm_password',];
 
         $newUserData = array_intersect_key($_POST, array_flip($allowedFields));
         $newUserData['user_id'] = Session::get('user')['id'];
         $newUserData = array_map('sanitize', $newUserData);
 
-        $requiredFields = ['given_name', 'family_name', 'nickname', 'email',];
+        $requiredFields = ['given_name', 'family_name', 'email', 'user_password', 'confirm_password'];
 
         $errors = [];
 
@@ -158,14 +174,51 @@ class UserController
             }
         }
 
+        // Check nickname if provided, otherwise use given name
+        $nickname = $newUserData['nickname'] ?? '';
+        if ($nickname) {
+            if (!Validation::string($newUserData[$field])) {
+                $errors[$field] = ucfirst(str_replace("_", " ", $field)) . ' <em>is required</em>';
+            }
+        } else {
+            $newUserData['nickname'] = $newUserData['given_name'];
+        }
+
+        $_POST['user_password'] = trim($_POST['user_password'] ?? null);
+        $_POST['confirm_password'] = trim($_POST['confirm_password'] ?? null);
+
+
+        if (!Validation::string($_POST['user_password'], 6)) {
+            $errors['user_password'] = 'Password must be 6 or more characters';
+        }
+        if (!Validation::string($_POST['confirm_password'], 6)) {
+            $errors['confirm_password'] = 'Password Confirmation must be 6 or more characters';
+        }
+
+        if (!Validation::match($_POST['confirm_password'], $_POST['user_password'])) {
+            $errors['password_match'] = 'Passwords do not match';
+        }
+
+        $params = [
+            'email' => $newUserData['email']
+        ];
+
+        // Check if email exists
+        $emailExist = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+        if ($emailExist) {
+            $errors['email'] = 'That email already exists';
+        }
+
         if (!empty($errors)) {
-            // Reload view with errors
+            // Reload the form with errors
             loadView('users/create', [
                 'errors' => $errors,
                 'user' => $newUserData
             ]);
             exit();
         }
+
 
 
         if (!empty($_POST['user_password'])) {
@@ -175,6 +228,9 @@ class UserController
             $passwordHash = password_hash($_POST['user_password'], PASSWORD_BCRYPT, $hashOptions);
             $newUserData['user_password'] = $passwordHash;
         }
+
+        // Remove confirm_password from the data to be inserted
+        unset($newUserData['confirm_password']);
 
         // Save the submitted data
         $fields = [];
@@ -271,14 +327,14 @@ class UserController
             return redirect('/users/' . $user->id);
         }
 
-        $allowedFields = ['given_name', 'family_name', 'nickname', 'user_password', 'confirm_password',];
+        $allowedFields = ['given_name', 'family_name', 'nickname', 'email', 'user_password', 'confirm_password',];
 
         $updateValues = array_intersect_key($_POST, array_flip($allowedFields)) ?? [];
 
         $updateValues = array_map('sanitize', $updateValues);
 
 
-        $requiredFields = ['given_name', 'family_name','nickname'];
+        $requiredFields = ['given_name', 'family_name','email', 'user_password', 'confirm_password'];
 
         $errors = [];
 
@@ -288,23 +344,49 @@ class UserController
             }
         }
 
+        // Check nickname if provided, otherwise set it to given name
+        $nickname = $updateValues['nickname'] ?? '';
+        if ($nickname) {
+            if (!Validation::string($nickname)) {
+                $errors['nickname'] = 'Nickname must be a valid string';
+            }
+        } else {
+            $updateValues['nickname'] = $updateValues['given_name'];
+        }
+
         $_POST['user_password'] = trim($_POST['user_password'] ?? null);
-        $_POST['password_confirmation'] = trim($_POST['password_confirmation'] ?? null);
+        $_POST['confirm_password'] = trim($_POST['confirm_password'] ?? null);
+
 
         if (!Validation::string($_POST['user_password'], 6)) {
             $errors['user_password'] = 'Password must be 6 or more characters';
         }
-        if (!Validation::string($_POST['password_confirmation'], 6)) {
-            $errors['password_confirmation'] = 'Password Confirmation must be 6 or more characters';
+        if (!Validation::string($_POST['confirm_password'], 6)) {
+            $errors['confirm_password'] = 'Password Confirmation must be 6 or more characters';
         }
 
-        if (!Validation::match($_POST['password_confirmation'], $_POST['user_password'])) {
+        if (!Validation::match($_POST['confirm_password'], $_POST['user_password'])) {
             $errors['password_match'] = 'Passwords do not match';
         }
 
-        if (!Validation::string($_POST['user_password'], 1) && !Validation::string($_POST['password_confirmation'], 1)) {
-            unset($_POST['user_password'], $_POST['password_confirmation']);
-            unset($errors['user_password'], $errors['password_confirmation'], $errors['password_match']);
+//        if (!Validation::string($_POST['user_password'], 1) && !Validation::string($_POST['confirm_password'], 1)) {
+//            unset($_POST['user_password'], $_POST['confirm_password']);
+//            unset($errors['user_password'], $errors['confirm_password'], $errors['password_match']);
+//        }
+
+
+        $currentEmail = $user->email;
+
+        $params = [
+            'email' => $updateValues['email'],
+            'current_email' => $currentEmail
+        ];
+
+        // Check if email exists
+        $emailUpdate = $this->db->query('SELECT * FROM users WHERE email = :email AND email != :current_email', $params)->fetch();
+
+        if ($emailUpdate) {
+            $errors['email'] = 'That email already exists';
         }
 
         if (!empty($errors)) {
@@ -314,6 +396,9 @@ class UserController
             ]);
             exit();
         }
+
+        // Remove confirm_password from the data to be inserted
+        unset($updateValues['confirm_password']);
 
         // Submit to database
         $updateFields = [];

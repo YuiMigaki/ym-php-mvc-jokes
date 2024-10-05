@@ -1,17 +1,15 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Jokes show page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to show jokes
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Filename:        show.view.php
+ * Location:        /App/views/jokes
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -50,7 +48,7 @@ loadPartial('navigation');
         <section class="w-1/2 mx-auto bg-white shadow rounded p-4 flex flex-col">
 
             <h5 class="-mx-4 bg-zinc-700 text-zinc-200 text-2xl p-4 -mt-4 mb-4 rounded-t flex-0 flex justify-between">
-                <?= $joke->category_name ?>
+                Category: <?= $joke->category_name ?>
             </h5>
 
             <section class="flex-grow flex flex-row">
@@ -58,11 +56,11 @@ loadPartial('navigation');
                 <section class="grow">
 
                 <h5 class="text-lg font-bold">
-                    Joke:
+                    Joke Content:
                 </h5>
-                <p class="grow text-lg text-zinc-600 mb-6">
-                    <?= $joke->joke ?? "n/a" ?>
-                </p>
+                <div class="grow text-lg text-zinc-600 mb-6">
+                    <?= $jokeContent ?? "n/a" ?>
+                </div>
 
                 <h5 class="text-lg font-bold">
                     Tags:
@@ -72,7 +70,7 @@ loadPartial('navigation');
                 </p>
 
                 <h5 class="text-lg font-bold">
-                    Added by:
+                    Created by:
                 </h5>
                 <p class="grow text-lg text-zinc-600 mb-6">
                     <?= $joke->author_name ?? "n/a" ?>

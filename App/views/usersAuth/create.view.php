@@ -2,17 +2,30 @@
 /**
  * Register User View
  *
+ * This file is to create new users
+ *
  * Filename:        create.view.php
  * Location:        App/views/usersAuth
- * Project:         XXX-PHP-MVC-Jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
+use Framework\Middleware\Authorise;
+use Framework\Session;
+
+$authenticated = new Authorise();
+if ($authenticated->isAuthenticated()){
+    $user = Session::get('user')??'n/a';
+}
+
 loadPartial('header');
-loadPartial('navigation'); ?>
+loadPartial('navigation');
+
+?>
+
 
     <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg
                  flex justify-center items-center mt-8 w-1/2 ">
@@ -94,6 +107,7 @@ loadPartial('navigation'); ?>
             </form>
         </section>
     </main>
+
 
 <?php
 loadPartial('footer');

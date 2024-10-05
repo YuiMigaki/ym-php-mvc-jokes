@@ -1,24 +1,25 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Jokes create page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to create jokes
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Filename:        create.view.php
+ * Location:        /App/views/jokes
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
-$pageTitle = "Add | Jokes | YM-PHP-MVC-Jokes";
+$pageTitle = "Create | Jokes | YM-PHP-MVC-Jokes";
 
 loadPartial("header", ["pageTitle"=>$pageTitle]);
 loadPartial('navigation');
+
+//require_once __DIR__ . '/../../../vendor/autoload.php';
+//use Parsedown;
 
 ?>
 
@@ -37,23 +38,32 @@ loadPartial('navigation');
             'errors' => $errors ?? []
         ]) ?>
 
-            <form method="POST" action="/jokes">
+            <form id="jokeForm" method="POST" action="/jokes" >
 
                 <h2 class="text-2xl font-bold mb-6 text-left text-gray-500">
                     Joke Information
                 </h2>
 
                 <section class="mb-4">
-                    <label for="Joke" class="mt-4 pb-1">Joke:</label>
-                    <input type="text" id="Joke"
-                           name="joke" placeholder="Joke"
+                    <label for="Title" class="mt-4 pb-1">Joke Title:</label>
+                    <input type="text" id="Title"
+                           name="title" placeholder="Title"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
-                           value="<?= $joke['joke'] ?? '' ?>"/>
+                           value="<?= $joke['title'] ?? '' ?>"/>
                 </section>
 
                 <section class="mb-4">
+                        <label for="Joke" class="mt-4 pb-1">Joke Content:</label>
+                        <textarea id="Joke"
+                        name="joke" placeholder="Joke Content"
+                        class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"><?= $joke['joke'] ?? '' ?>
+                      </textarea>
+                </section>
+
+
+                <section class="mb-4">
                     <label for="CategoryName" class="mt-4 pb-1">Category:</label>
-                    <input type="text" id="category_name"
+                    <input type="text" id="CategoryName"
                            name="category_name" placeholder="Category"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $joke['category_name'] ?? ''?>"/>
@@ -71,7 +81,7 @@ loadPartial('navigation');
 
                 <section class="mb-4">
                     <label for="AuthorName" class="mt-4 pb-1">Author:</label>
-                    <input type="text" id="author_name"
+                    <input type="text" id="AuthorName"
                            name="author_name" placeholder="Author"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $joke['author_name'] ?? '' ?>"/>
@@ -92,12 +102,77 @@ loadPartial('navigation');
 
             </form>
 
-        </section>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                var simplemde = new SimpleMDE({
+                    element: document.getElementById("Joke"),
+                    spellChecker: false,
+                    autofocus: true,
+                    autosave: {
+                        enabled: false,
+                        uniqueId: "joke",
+                        delay: 1000
+                    }
+                });
 
+                document.getElementById('jokeForm').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var jokeMarkdown = simplemde.value();
+                    $.ajax({
+                        url: '/jokes',
+                        type: 'POST',
+                        dataType: "json",
+                        data: {
+                            joke: jokeMarkdown,
+                            title: document.getElementById('Title').value,
+                            category_name: document.getElementById('CategoryName').value,
+                            tags: document.getElementById('Tags').value,
+                            author_name: document.getElementById('AuthorName').value,
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                console.log('Joke saved successfully');
+                                window.location.href = '/jokes';
+                            } else {
+                                // Clear previous errors
+                                $('.error-messages').remove();
+
+                                // Handle validation errors
+                                if (response.errors) {
+                                    var errorHtml = `
+                                                    <div class="flex w-full shadow-lg rounded-lg my-4 error-messages">
+                                                        <div class="bg-red-600 py-2 px-6 rounded-l-lg flex items-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="fill-current text-white" width="20" height="20">
+                                                                <path fill-rule="evenodd" d="M4.47.22A.75.75 0 015 0h6a.75.75 0 01.53.22l4.25 4.25c.141.14.22.331.22.53v6a.75.75 0 01-.22.53l-4.25 4.25A.75.75 0 0111 16H5a.75.75 0 01-.53-.22L.22 11.53A.75.75 0 010 11V5a.75.75 0 01.22-.53L4.47.22zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5H5.31zM8 4a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 4zm0 8a1 1 0 100-2 1 1 0 000 2z"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="px-4 py-2 bg-white rounded-r-lg flex flex-col justify-between items-left w-full border border-l-transparent border-gray-200">
+                                                    `;
+
+                                    // Append error messages
+                                    for (const [field, message] of Object.entries(response.errors)) {
+                                        errorHtml += `<div class="text-red-500">${message}</div>`;
+                                    }
+
+                                    // Close the error container
+                                    errorHtml += `</div></div>`;
+
+                                    // Append new error messages before the form
+                                    $('#jokeForm').before(errorHtml);
+                                }
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error saving joke:', error);
+                        },
+                    });
+                });
+            </script>
+
+        </section>
     </article>
 </main>
 
-
 <?php
 loadPartial("footer");
-
+?>

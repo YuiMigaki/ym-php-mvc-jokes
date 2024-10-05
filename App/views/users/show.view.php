@@ -1,21 +1,19 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Users show page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to show indivisual users
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Filename:        show.view.php
+ * Location:        /App/views/users
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
-$pageTitle = "Show | Users | XXX-MVC-Jokes";
+$pageTitle = "Show | Users | YM-MVC-Jokes";
 
 loadPartial("header", ["pageTitle" => $pageTitle]);
 loadPartial('navigation');
@@ -72,7 +70,7 @@ loadPartial('navigation');
                     </p>
 
                     <h5 class="text-lg font-bold">
-                        Added by:
+                        Created by:
                     </h5>
                     <p class="grow text-lg text-zinc-600 mb-6">
                         <?= $user->added_by ?? "n/a" ?>

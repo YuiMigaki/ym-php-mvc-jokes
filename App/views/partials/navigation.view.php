@@ -2,12 +2,14 @@
 /**
  * Page 'Header' and Navigation
  *
+ * This file is to display navigation
+ *
  * Filename:        navigation.view.php
  * Location:        App/views/partials
- * Project:         SaaS-FED-Notes
- * Date Created:    DD/MM/YYYY
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -23,7 +25,7 @@ if ($authenticated->isAuthenticated()){
 
 <header class="bg-black text-white p-4 flex-grow-0 flex flex-row align-middle content-center">
     <h1 class="flex-0 w-32 text-xl p-4 ">
-        <a href="#"
+        <a href="/"
            class="py-4 px-4 -mx-4 -my-4 font-bold rounded text-sky-300 hover:text-sky-700 hover:bg-sky-300
                      transition ease-in-out duration-500">
             MVC
@@ -73,12 +75,11 @@ if ($authenticated->isAuthenticated()){
         if ($authenticated->isAuthenticated()):
             ?>
             <p class="text-zinc-300 "><?= Session::get('user')['nickname'] ?></p>
-
             <form method="POST" action="/auth/logout">
                 <button class="pb-2 px-1 text-text-zinc-700-200 hover:text-sky-300
                      border-0 border-b-2 hover:border-b-sky-500
                      transition ease-in-out duration-500">
-                    <i class="fa fa-search"></i> Logout
+                    Logout
                 </button>
             </form>
         <?php
@@ -100,8 +101,8 @@ if ($authenticated->isAuthenticated()){
         endif;
         ?>
 
-        <form method="GET" action="/" class="block mx-5">
-            <input type="text" name="keywords" placeholder="Joke search..."
+        <form method="GET" action="/search" class="block mx-5">
+            <input type="text" name="keywords" placeholder="Keyword Search..."
                    class="w-full md:w-auto px-4 py-2 focus:outline-none text-black"/>
             <button class="w-full md:w-auto
                            bg-sky-500 hover:bg-sky-600

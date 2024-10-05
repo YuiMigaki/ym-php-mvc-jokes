@@ -3,12 +3,14 @@
 /**
  * Database Configuration File
  *
+ * This file is to configure daatabase
+ *
  * Filename:        db.php
  * Location:        config/
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <StudentID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

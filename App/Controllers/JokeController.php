@@ -1,15 +1,19 @@
 <?php
 /**
- * Joke Management Controller
+ * Jokes Management Controller
+ *
+ * This controller is to manage all the jokes
  *
  * Filename:        JokeController.php
  * Location:        /App/Controllers
- * Project:         XXX-mvc-jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    6/09/2024
  *
- * :          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
+
+
 
 namespace App\Controllers;
 
@@ -18,6 +22,9 @@ use Framework\Database;
 use Framework\Session;
 use Framework\Validation;
 
+require __DIR__ . '/../../vendor/autoload.php';
+
+use Parsedown;
 
 class JokeController
 {
@@ -78,8 +85,13 @@ class JokeController
             return;
         }
 
+        $parsedown = new Parsedown();
+        $jokeContent = $parsedown->text($joke->joke);
+
+
         loadView('jokes/show', [
-            'joke' => $joke
+            'joke' => $joke,
+            'jokeContent' => $jokeContent
         ]);
     }
 
@@ -90,62 +102,51 @@ class JokeController
      */
     public function store()
     {
-        $allowedFields = ['joke', 'category_name', 'tags', 'author_name'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $newJokeData = array_intersect_key($_POST, array_flip($allowedFields));
+            $allowedFields = ['title', 'joke', 'category_name', 'tags', 'author_name'];
+            $newJokeData = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $newJokeData['user_id'] = Session::get('user')['id'];
+            $newJokeData['user_id'] = Session::get('user')['id'];
+            $newJokeData = array_map('sanitize', $newJokeData);
 
-        $newJokeData = array_map('sanitize', $newJokeData);
+            $requiredFields = ['title', 'joke', 'category_name', 'tags', 'author_name'];
+            $errors = [];
 
-        $requiredFields = ['joke', 'category_name', 'tags', 'author_name'];
-
-        $errors = [];
-
-        foreach ($requiredFields as $field) {
-            if (empty($newJokeData[$field]) || !Validation::string
-                ($newJokeData[$field])) {
-                $errors[$field] = ucfirst($field) . ' is required';
-            };
-        }
-
-        if (!empty($errors)) {
-            //Reload view with errors
-            loadView('jokes/create', [
-                'errors' => $errors,
-                'joke' => $newJokeData
-
-            ]);
-        } else {
-            // Submit data
-
-            $fields = [];
-
-            foreach ($newJokeData as $field => $value) {
-                $fields[] = $field;
-            }
-
-            $fields = implode(', ', $fields);
-
-            $values = [];
-
-            foreach ($newJokeData as $field => $value) {
-                //Convert empty strings to null
-                if ($value === '') {
-                    $newJokeData[$field] = null;
+            // Validate required fields
+            foreach ($requiredFields as $field) {
+                if (empty($newJokeData[$field]) || !Validation::string($newJokeData[$field])) {
+                    $errors[$field] = ucfirst($field) . ' is required';
                 }
-                $values[] = ':' . $field;
             }
 
-            $values = implode(', ', $values);
+            // Check for errors
+            if (!empty($errors)) {
+                // Return errors as JSON
+                echo json_encode(['success' => false, 'errors' => $errors]);
+                return;
+            }
+//            if(!empty($errors)) {
+//                loadView('jokes/create', [
+//                    'joke' => $joke,
+//                    'errors' => $errors
+//                ]);
+//                exit;
+//            }
+
+
+            // Prepare and execute the insert query
+            $fields = implode(', ', array_keys($newJokeData));
+            $values = ':' . implode(', :', array_keys($newJokeData));
 
             $query = "INSERT INTO jokes ({$fields}) VALUES ({$values})";
-
             $this->db->query($query, $newJokeData);
 
             Session::setFlashMessage('success_message', 'Joke created successfully');
 
-            redirect('/jokes');
+            // Return success response
+            echo json_encode(['success' => true]);
+            return;
         }
     }
 
@@ -225,11 +226,13 @@ class JokeController
      */
     public function update($params)
     {
+
         $id = $params['id'] ?? '';
 
         $params = [
             'id' => $id
         ];
+
 
         $joke = $this->db->query('SELECT * FROM jokes WHERE id = :id', $params)->fetch();
 
@@ -245,53 +248,68 @@ class JokeController
             return redirect('/jokes/' . $joke->id);
         }
 
-        $allowedFields = ['joke', 'category_name', 'tags', 'author_name'];
 
-        $updateValues = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
 
-        $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
+            $allowedFields = ['title','joke', 'category_name', 'tags', 'author_name'];
 
-        $updateValues = array_map('sanitize', $updateValues);
+            $updateValues = [];
 
-        $requiredFields = ['joke', 'category_name', 'tags', 'author_name'];
+            $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $errors = [];
+            $updateValues = array_map('sanitize', $updateValues);
 
-        foreach($requiredFields as $field) {
-            if(empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
-                $errors[$field] = ucfirst($field) . ' is required';
-            }
-        }
+            $requiredFields = ['title','joke', 'category_name', 'tags', 'author_name'];
 
-        if(!empty($errors)) {
-            loadView('jokes/edit', [
-                'joke'=> $joke,
-                'errors' => $errors
-            ]);
-            exit;
-        } else {
-            // Submit to database
-            $updateFields = [];
+            $errors = [];
 
-            $updateValues['updated_at'] = date('Y-m-d H:i:s');
-
-            foreach (array_keys($updateValues) as $field) {
-                $updateFields[] = "{$field} = :{$field}";
+            foreach($requiredFields as $field) {
+                if(empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+                    $errors[$field] = ucfirst($field) . ' is required';
+                }
             }
 
-            $updateFields = implode(', ', $updateFields);
+//            if(!empty($errors)) {
+//                loadView('jokes/edit', [
+//                    'joke'=> $joke,
+//                    'errors' => $errors
+//                ]);
+//                exit;
 
-            $updateQuery = "UPDATE jokes SET $updateFields WHERE id = :id";
+            // Check for errors
+            if (!empty($errors)) {
+                echo json_encode(['status' => 'error', 'errors' => $errors]);
+                return;
+            }
+                // Submit to database
+                $updateFields = [];
 
-            $updateValues['id'] = $id;
-            $this->db->query($updateQuery, $updateValues);
+                $updateValues['updated_at'] = date('Y-m-d H:i:s');
+
+                foreach (array_keys($updateValues) as $field) {
+                    $updateFields[] = "{$field} = :{$field}";
+                }
+
+                $updateFields = implode(', ', $updateFields);
+
+                $updateQuery = "UPDATE jokes SET $updateFields WHERE id = :id";
+
+                $updateValues['id'] = $id;
+                $this->db->query($updateQuery, $updateValues);
 
 
-            Session::setFlashMessage('success_message', 'Joke Updated');
+                Session::setFlashMessage('success_message', 'Joke Updated');
 
-            redirect('/jokes/' . $id);
+
+            echo json_encode(['status' => 'success']);
+
+                return;
+            }
+
         }
-    }
+
+
+
 
     /**
      * Search jokes by keywords
@@ -318,5 +336,10 @@ class JokeController
         ]);
 
     }
+    public function script()
+    {
+        loadView('jokes/script', );
+    }
+
 
 }

@@ -1,13 +1,15 @@
 <?php
 /**
- * Page Footer
+ * Footer display page
+ *
+ * This file is to display footer
  *
  * Filename:        footer.view.php
- * Location:        App/views/partials
- * Project:         SaaS-FED-Notes
- * Date Created:    DD/MM/YYYY
+ * Location:        /App/views/partials
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 ?>
@@ -32,8 +34,8 @@
     <section class="w-1/2 p-8 text-xs">
         <h6 class="font-bold mb-2">Links</h6>
         <ul class=" flex flex-col gap-1">
-            <li><a href="/" class="text-zinc-500 hover:text-white underline underline-offset-2">Register</a></li>
-            <li><a href="/" class="text-zinc-500 hover:text-white underline underline-offset-2">About</a></li>
+            <li><a href="/auth/register" class="text-zinc-500 hover:text-white underline underline-offset-2">Register</a></li>
+            <li><a href="/about" class="text-zinc-500 hover:text-white underline underline-offset-2">About</a></li>
             <li><a href="/" class="text-zinc-500 hover:text-white underline underline-offset-2">Privacy</a></li>
             <li><a href="/" class="text-zinc-500 hover:text-white underline underline-offset-2">Contact Us</a></li>
         </ul>

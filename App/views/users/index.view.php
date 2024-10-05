@@ -1,22 +1,28 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Users index page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to show list of all the users on index page
  *
  * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Location:        /App/views/users
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
 /* Load HTML header and navigation areas */
-$pageTitle = "Users | YM-PHP-MVC-Jokes";
+use Framework\Middleware\Authorise;
+
+$authenticated = new Authorise();
+if (!$authenticated->isAuthenticated()) {
+    header('Location: /auth/login');
+    exit;
+}
+
+$pageTitle = "Index | Users | YM-MVC-Jokes";
 
 loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
 
@@ -69,7 +75,7 @@ loadPartial("header", ["pageTitle"=>$pageTitle]);loadPartial('navigation');
                                  alt="Avatar for <?= $user->given_name ?> <?= $user->family_name ?>">
                         </p>
                         <p class="align-middle">Email: <?= $user->email ?></p>
-                        <p class="align-middle">Added: <?= $user->created_at ?></p>
+                        <p class="align-middle">Created: <?= $user->created_at ?></p>
                     </section>
                     <a href="/users/<?= $user->id ?>"
                        class="col-span-2 text-center text-zinc-900 font-medium

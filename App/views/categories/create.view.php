@@ -1,21 +1,19 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Category create page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to create categories
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Filename:        create.view.php
+ * Location:        /App/views/categories
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
-$pageTitle = "Add | Categories | YM-PHP-MVC-Jokes";
+$pageTitle = "Create| Categories | YM-PHP-MVC-Jokes";
 
 loadPartial("header", ["pageTitle"=>$pageTitle]);
 loadPartial('navigation');

@@ -1,13 +1,15 @@
 <?php
 /**
- * Home Page View
+ * About Page View
  *
- * Filename:        home.view.php
+ * This file is to display about page information
+ *
+ * Filename:        about.view.php
  * Location:        /App/views
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    23/08/2024
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -19,7 +21,7 @@ loadPartial('navigation');
 <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg">
     <article>
         <header class="bg-zinc-700 text-zinc-200 -mx-4 -mt-8 p-8 text-2xl font-bold mb-8">
-            <h1>About Website</h1>
+            <h1>About This Website</h1>
         </header>
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">

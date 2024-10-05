@@ -1,17 +1,16 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Main Entry Point
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file serves as the main entry point for the ym-php-mvc-jokes application.
+
  *
  * Filename:        index.php
- * Location:        ${FILE_LOCATION}
- * Project:         SaaS-FED-Notes
- * Date Created:    DD/MM/YYYY
+ * Location:        public/
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

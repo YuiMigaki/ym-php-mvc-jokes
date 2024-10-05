@@ -2,12 +2,14 @@
 /**
  * Category Management Controller
  *
+ * This controller is to manage categories
+ *
  * Filename:        CategoryController.php
  * Location:        /App/Controllers
- * Project:         XXX-mvc-jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -60,7 +62,8 @@ class CategoryController
      * Show a single category
      * @param array $params
      * @return void
-     */
+     **/
+
     public function show($params)
     {
         $id = $params['id'] ?? '';
@@ -87,6 +90,7 @@ class CategoryController
      *
      * @return void
      */
+
     public function store()
     {
         $allowedFields = ['name'];

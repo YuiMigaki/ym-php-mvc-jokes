@@ -1,13 +1,15 @@
 <?php
 /**
- * Home Page View
+ * Create Password Page View
  *
- * Filename:        home.view.php
+ * This file is to create password
+ *
+ * Filename:        create-password.view.php
  * Location:        /App/views
- * Project:         XXX-PHP-MVC-Jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

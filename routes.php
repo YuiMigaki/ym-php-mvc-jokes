@@ -4,11 +4,10 @@
  *
  * Filename:        routes.php
  * Location:        /
- * Project:         XXX-mvc-jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    06/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
- * Author:          Student Name <student_id@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  */
 
 /* ----------------------------------------------------------------------------
@@ -16,6 +15,7 @@
  */
 $router->get('/', 'StaticPageController@index');
 $router->get('/about', 'StaticPageController@about');
+$router->get('/search', 'StaticPageController@search');
 
 /* ----------------------------------------------------------------------------
  * Jokes Endpoints

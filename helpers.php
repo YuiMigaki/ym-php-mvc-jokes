@@ -2,12 +2,14 @@
 /**
  * Helper Functions
  *
- * Filename:        helpers.php
- * Location:        ${FILE_LOCATION}
- * Project:         SaaS-FED-Notes
- * Date Created:    DD/MM/YYYY
+ * This is a file stores helper functions
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Filename:        helpers.php
+ * Location:        /
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    23/08/2024
+ *
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

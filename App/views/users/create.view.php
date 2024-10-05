@@ -1,21 +1,20 @@
 <?php
+
 /**
- * FILE TITLE GOES HERE
+ * Users create page
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to create users
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Filename:        create.view.php
+ * Location:        /App/views/users
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
-$pageTitle = "Add | Users | YM-PHP-MVC-Jokes";
+$pageTitle = "Create | Users | YM-PHP-MVC-Jokes";
 
 loadPartial("header", ["pageTitle"=>$pageTitle]);
 loadPartial('navigation');
@@ -87,7 +86,7 @@ loadPartial('navigation');
                 <section class="mb-4">
                     <label for="PasswordConfirmation" class="mt-4 pb-1">Confirm password:</label>
                     <input type="password" id="PasswordConfirmation"
-                           name="password_confirmation" placeholder="Confirm Password"
+                           name="confirm_password" placeholder="Confirm Password"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"/>
                 </section>
 

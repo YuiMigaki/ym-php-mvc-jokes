@@ -1,16 +1,15 @@
 <?php
 /**
- * UserAuth Controller
+ * UserAuthenticate Management Controller
  *
- * Provides the Register, Login and Logout capabilities
- * of the application
+ * This controller is to manage all the user authentication
  *
  * Filename:        UserAuthController.php
- * Location:        App/Controllers
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Location:        /App/Controllers
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
@@ -96,16 +95,23 @@ class UserAuthController
             $errors['family_name'] = 'Family Name is optional';
         }
 
-      if (!Validation::string($nickName, 2, 50)) {
-          $errors['nickname'] = 'Given Name must be between 2 and 50 characters';
-      }
-
         if (!Validation::string($password, 6, 50)) {
             $errors['password'] = 'Password must be at least 6 characters';
         }
 
         if (!Validation::match($password, $passwordConfirmation)) {
             $errors['password_confirmation'] = 'Passwords do not match';
+        }
+
+        // Check if nickname is provided, if yes validate it, if not, set nickname to given name.
+        if (!empty($nickName)) {
+            if (!Validation::string($nickName, 2, 50)) {
+                $errors['nickname'] = 'Nickname must be between 2 and 50 characters';
+            }else {
+                $nickName = $nickName;
+            }
+        }else {
+            $nickName = $givenName;
         }
 
         if (!empty($errors)) {
@@ -116,7 +122,6 @@ class UserAuthController
                     'family_name' => $familyName,
                     'nickname' => $nickName,
                     'email' => $email,
-
                 ]
             ]);
             exit;

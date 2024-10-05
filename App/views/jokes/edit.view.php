@@ -1,100 +1,149 @@
 <?php
-/**
- * FILE TITLE GOES HERE
- *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
- *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
- *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
- *
- */
-
 $pageTitle = "Edit | Jokes | YM-MVC-Jokes";
 
 loadPartial("header", ["pageTitle" => $pageTitle]);
 loadPartial('navigation');
-
 ?>
 
-    <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg flex flex-col flex-grow">
-        <article>
-            <header class="bg-zinc-700 text-zinc-200 -mx-4 -mt-8 p-8 mb-8 flex">
-                <h1 class="grow text-2xl font-bold ">Jokes - Edit</h1>
-                <p class="text-md flex-0 px-8 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded transition ease-in-out duration-500">
-                    <a href="/jokes/create">Add Joke</a>
-                </p>
-            </header>
+<main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg flex flex-col flex-grow">
+    <article>
+        <header class="bg-zinc-700 text-zinc-200 -mx-4 -mt-8 p-8 mb-8 flex">
+            <h1 class="grow text-2xl font-bold">Jokes - Edit</h1>
+            <p class="text-md flex-0 px-8 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded transition ease-in-out duration-500">
+                <a href="/jokes/create">Add Joke</a>
+            </p>
+        </header>
 
-            <section>
+        <section>
 
-                <?= loadPartial('errors', [
-                    'errors' => $errors ?? []
-                ]) ?>
+            <?= loadPartial('errors', [
+                'errors' => $errors ?? []
+            ]) ?>
 
-                <form method="POST" action="/jokes/<?= $joke->id ?>">
-                    <input type="hidden" name="_method" value="PUT">
+            <form id="jokeForm" method="POST" action="/jokes/<?= $joke->id ?>">
+                <input type="hidden" name="_method" value="PUT">
 
-                    <h2 class="text-2xl font-bold mb-6 text-left text-gray-500">
-                        Joke Information
-                    </h2>
+                <h2 class="text-2xl font-bold mb-6 text-left text-gray-500">Joke Information</h2>
 
-                    <div class="mb-4">
-                        <label for="Joke" class="mt-4 pb-1">Joke:</label>
-                        <input type="text" placeholder="Joke"
-                               id="Joke" name="joke"
-                               class="w-full px-4 py-2 border rounded focus:outline-none"
-                               value="<?= $joke->joke ?? '' ?>"/>
-                    </div>
-                    <div class="mb-4">
-                        <label for="CategoryName" class="mt-4 pb-1">Category:</label>
-                        <input type="text" placeholder="Category"
-                               id="CategoryName" name="category_name"
-                               class="w-full px-4 py-2 border rounded focus:outline-none"
-                               value="<?= $joke->category_name ?? '' ?>"/>
-                    </div>
-                    <div class="mb-4">
-                        <label for="Tags" class="mt-4 pb-1">Tags:</label>
-                        <input type="text" placeholder="Tags"
-                               id="Tags" name="tags"
-                               class="w-full px-4 py-2 border rounded focus:outline-none"
-                               value="<?= $joke->tags ?? '' ?>"/>
-                    </div>
-                    <div class="mb-4">
-                        <label for="AuthorName" class="mt-4 pb-1">Author:</label>
-                        <input type="text" placeholder="Author"
-                               id="AuthorName" name="author_name"
-                               class="w-full px-4 py-2 border rounded focus:outline-none"
-                               value="<?= $joke->author_name ?? '' ?>"/>
-                    </div>
+                <div class="mb-4">
+                    <label for="Title" class="mt-4 pb-1">Joke Title:</label>
+                    <input type="text" id="Title" name="title" placeholder="Joke Title"
+                           class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
+                           value="<?= $joke->title ?? '' ?>"/>
+                </div>
 
+                <div class="mb-4">
+                    <label for="Joke" class="mt-4 pb-1">Joke Content:</label>
+                    <textarea id="Joke" name="joke" placeholder="Joke Content"
+                              class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"><?= $joke->joke ?? '' ?></textarea>
+                </div>
 
+                <div class="mb-4">
+                    <label for="CategoryName" class="mt-4 pb-1">Category:</label>
+                    <input type="text" placeholder="Category" id="CategoryName" name="category_name"
+                           class="w-full px-4 py-2 border rounded focus:outline-none"
+                           value="<?= $joke->category_name ?? '' ?>"/>
+                </div>
 
+                <div class="mb-4">
+                    <label for="Tags" class="mt-4 pb-1">Tags:</label>
+                    <input type="text" placeholder="Tags" id="Tags" name="tags"
+                           class="w-full px-4 py-2 border rounded focus:outline-none"
+                           value="<?= $joke->tags ?? '' ?>"/>
+                </div>
 
-                    <button type="submit"
-                            class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3
-                               rounded focus:outline-none">
-                        Save
-                    </button>
+                <div class="mb-4">
+                    <label for="AuthorName" class="mt-4 pb-1">Author:</label>
+                    <input type="text" placeholder="Author" id="AuthorName" name="author_name"
+                           class="w-full px-4 py-2 border rounded focus:outline-none"
+                           value="<?= $joke->author_name ?? '' ?>"/>
+                </div>
 
-                    <a href="/jokes/<?= $joke->id ?>"
-                       class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded
-                      focus:outline-none">
-                        Cancel
-                    </a>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none">
+                    Save
+                </button>
 
-                </form>
+                <a href="/jokes/<?= $joke->id ?>" class="block text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none">
+                    Cancel
+                </a>
+            </form>
 
-            </section>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                var simplemde = new SimpleMDE({
+                    element: document.getElementById("Joke"),
+                    spellChecker: false,
+                    autofocus: true,
+                    autosave: {
+                        enabled: false,
+                        uniqueId: "joke",
+                        delay: 1000
+                    }
+                });
 
-        </article>
-    </main>
+                document.getElementById('jokeForm').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var jokeMarkdown = simplemde.value();
+                    $.ajax({
+                        url: '/jokes/<?= $joke->id ?>',
+                        type: 'POST',
+                        data: {
+                            joke: jokeMarkdown,
+                            title: document.getElementById('Title').value,
+                            category_name: document.getElementById('CategoryName').value,
+                            tags: document.getElementById('Tags').value,
+                            author_name: document.getElementById('AuthorName').value,
+                            _method: 'PUT' // Include this to simulate PUT
+                        },
 
+                        success: function(data) {
+                            const response = (typeof data === 'string' ? JSON.parse(data) : data) ?? {};
+                            //If data is a string that can be parsed, response will be the parsed object.
+                            // If data is not a string, response will just be the value of data.
+                            // If the parsed result is null or undefined, response will be an empty object {}.
+                            console.log('Response:', response);
+
+                            if (response.status === 'success') {
+                                window.location.href = '/jokes';
+                            } else {
+                                $('.error-messages').remove();
+
+                                // Handle validation errors
+                                if (response.errors) {
+                                    var errorHtml = `
+                                                    <div class="flex w-full shadow-lg rounded-lg my-4 error-messages">
+                                                        <div class="bg-red-600 py-2 px-6 rounded-l-lg flex items-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="fill-current text-white" width="20" height="20">
+                                                                <path fill-rule="evenodd" d="M4.47.22A.75.75 0 015 0h6a.75.75 0 01.53.22l4.25 4.25c.141.14.22.331.22.53v6a.75.75 0 01-.22.53l-4.25 4.25A.75.75 0 0111 16H5a.75.75 0 01-.53-.22L.22 11.53A.75.75 0 010 11V5a.75.75 0 01.22-.53L4.47.22zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5H5.31zM8 4a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 4zm0 8a1 1 0 100-2 1 1 0 000 2z"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="px-4 py-2 bg-white rounded-r-lg flex flex-col justify-between items-left w-full border border-l-transparent border-gray-200">
+                                                    `;
+
+                                    // Append error messages
+                                    for (const [field, message] of Object.entries(response.errors)) {
+                                        errorHtml += `<div class="text-red-500">${message}</div>`;
+                                    }
+
+                                    // Close the error container
+                                    errorHtml += `</div></div>`;
+
+                                    // Append new error messages before the form
+                                    $('#jokeForm').before(errorHtml);
+                                }
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error saving joke:', error);
+                        },
+                    });
+                });
+            </script>
+
+        </section>
+    </article>
+</main>
 
 <?php
 loadPartial("footer");
+?>

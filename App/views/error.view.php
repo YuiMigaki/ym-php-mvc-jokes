@@ -2,12 +2,14 @@
 /**
  * Error Message View
  *
+ * This file is to display error page
+ *
  * Filename:        error.view.php
  * Location:        /App/views
- * Project:         XXX-PHP-MVC-Jokes
+ * Project:         ym-php-mvc-jokes
  * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 

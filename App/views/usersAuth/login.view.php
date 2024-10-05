@@ -1,22 +1,21 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Login User View
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This file is to log in users
  *
  * Filename:        login.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         XXX-PHP-MVC-Jokes
+ * Location:        App/views/usersAuth
+ * Project:         ym-php-mvc-jokes
  * Date Created:    23/08/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
 loadPartial('header');
-loadPartial('navigation'); ?>
+loadPartial('navigation');
+?>
 
     <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg
                  flex justify-center items-center mt-8 w-1/2 ">

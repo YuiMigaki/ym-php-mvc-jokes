@@ -1,23 +1,23 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * StaticPage Management Controller
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * This controller is to manage when static page including home and about
  *
  * Filename:        StaticPageController.php
- * Location:
- * Project:         XXX-PHP-MVC-Jokes
- * Date Created:    DD/MM/YYYY
+ * Location:        /App/Controllers
+ * Project:         ym-php-mvc-jokes
+ * Date Created:    6/09/2024
  *
- * Author:          YOUR NAME <STUDENT_ID@tafe.wa.edu.au>
+ * Author:          Yui Migaki <20098757@tafe.wa.edu.au>
  *
  */
 
 namespace App\Controllers;
 
+require __DIR__ . '/../../vendor/autoload.php';
 
+use Parsedown;
 use Framework\Database;
 
 class StaticPageController
@@ -44,6 +44,12 @@ class StaticPageController
         $jokeCount = count($jokes);
         $categories = $this->db->query('SELECT * FROM categories ORDER BY created_at DESC')->fetchAll();
         $categoryCount = count($categories);
+        $random = $this->db->query('SELECT * FROM jokes ORDER BY RAND()LIMIT 1')->fetch();
+
+
+        $parsedown = new Parsedown();
+        $jokeContent = $parsedown->text($random->joke);
+
 
         loadView('home', [
             'users' => $users,
@@ -52,9 +58,16 @@ class StaticPageController
             'categoryCount' => $categoryCount,
             'jokeCount' => $jokeCount,
             'userCount' => $userCount,
+            'random' => $random,
+            'jokeContent' => $jokeContent
+
         ]);
 
+
+
+
     }
+
 
     /*
      * Show the about static page
@@ -69,4 +82,49 @@ class StaticPageController
 
 
     }
-}
+
+    public function search()
+    {
+
+        $keywords = isset($_GET['keywords']) ? trim($_GET['keywords']) : '';
+
+        if (empty($keywords)) {
+            redirect('/');
+        }
+
+            $jokeQuery = "SELECT * FROM jokes WHERE (title LIKE :keywords OR joke LIKE :keywords OR category_name LIKE :keywords OR tags LIKE :keywords OR author_name LIKE :keywords)";
+            $userQuery = "SELECT * FROM users WHERE (given_name LIKE :keywords OR family_name LIKE :keywords OR nickname LIKE :keywords OR email LIKE :keywords) ORDER BY given_name, family_name, nickname";
+            $categoryQuery = "SELECT * FROM categories WHERE (name LIKE :keywords)";
+
+            $params = [
+                'keywords' => "%{$keywords}%"
+            ];
+
+            $jokes = $this->db->query($jokeQuery, $params)->fetchAll();
+            $users = $this->db->query($userQuery, $params)->fetchAll();
+            $categories = $this->db->query($categoryQuery, $params)->fetchAll();
+
+
+            if (!empty($jokes)) {
+                loadView('/jokes/index', [
+                    'jokes' => $jokes,
+                    'keywords' => $keywords
+                ]);
+            } elseif (!empty($users)) {
+                loadView('/users/index', [
+                    'users' => $users,
+                    'keywords' => $keywords
+                ]);
+            } elseif (!empty($categories)) {
+                loadView('/categories/index', [
+                    'categories' => $categories,
+                    'keywords' => $keywords
+                ]);
+            }else {
+                loadView('home', [
+                    'keywords' => $keywords
+                ]);
+            }
+        }
+    }
+
