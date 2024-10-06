@@ -36,9 +36,9 @@ loadPartial('navigation');
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">
             <header class="-mx-4 bg-zinc-700 text-zinc-200 text-md text-semibold p-4 -mt-4 mb-4 rounded-t flex-0">
-                <h4>
+                <h2>
                     Developer's Information
-                </h4>
+                </h2>
             </header>
             <dl class="grid grid-cols-5 gap-2">
                 <dt class="col-span-1">Name:</dt>
@@ -62,20 +62,20 @@ loadPartial('navigation');
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">
             <header class="-mx-4 bg-zinc-700 text-zinc-200 text-md text-semibold p-4 -mt-4 mb-4 rounded-t flex-0">
-                <h4>
+                <h2>
                     A Brief Overview of the Application
-                </h4>
+                </h2>
             </header>
             <p>This application is a simple web application using PHP and elements of the MVC development methodology
                 owned by RIoT Systems (Robotics & Internet of Things), a Perth based educational and development company
-                who specialise in IoT, Robotics and Web Application systems.
+                who specialise in IoT, Robotics and Web Application systems.</p>
         </section>
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">
             <header class="-mx-4 bg-zinc-700 text-zinc-200 text-md text-semibold p-4 -mt-4 mb-4 rounded-t flex-0">
-                <h4>
+                <h2>
                     Details of the Programming Language and Servers
-                </h4>
+                </h2>
             </header>
             <dl class="grid grid-cols-5 gap-2">
                 <dt class="col-span-1">Programming Language:</dt>
@@ -101,9 +101,9 @@ loadPartial('navigation');
 
         <section class="mx-auto w-1/2 m-8 bg-zinc-200 text-sm  text-zinc-800 p-4 rounded-lg shadow">
             <header class="-mx-4 bg-zinc-700 text-zinc-200 text-md text-semibold p-4 -mt-4 mb-4 rounded-t flex-0">
-                <h4>
+                <h2>
                     Useful References
-                </h4>
+                </h2>
             </header>
             <dl class="grid grid-cols-5 gap-2">
                 <dt class="col-span-1">Tutorial Part 1:</dt>

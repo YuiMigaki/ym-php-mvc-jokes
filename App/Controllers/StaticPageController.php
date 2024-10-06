@@ -59,7 +59,7 @@ class StaticPageController
      * Show the home page
      *
      * @return void
-     * **/
+     */
 
     public function index()
     {
@@ -95,7 +95,7 @@ class StaticPageController
      * Show the about static page
      *
      * @return void
-     **/
+     */
     public function about()
     {
         // TODO: Crete the method code for the about page

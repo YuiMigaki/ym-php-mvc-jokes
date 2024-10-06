@@ -82,7 +82,7 @@ class CategoryController
      * Show a single category
      * @param array $params
      * @return void
-     **/
+     */
 
     public function show($params)
     {
@@ -304,6 +304,7 @@ class CategoryController
             $updateQuery = "UPDATE categories SET $updateFields WHERE id = :id";
 
             $updateValues['id'] = $id;
+
             $this->db->query($updateQuery, $updateValues);
 
 

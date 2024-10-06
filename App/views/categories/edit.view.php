@@ -47,6 +47,7 @@ loadPartial('navigation');
                 ]) ?>
 
                 <form method="POST" action="/categories/<?= $category->id ?>">
+
                     <input type="hidden" name="_method" value="PUT">
 
                     <h2 class="text-2xl font-bold mb-6 text-left text-gray-500">
@@ -55,7 +56,7 @@ loadPartial('navigation');
 
                     <div class="mb-4">
                         <label for="CategoryName" class="mt-4 pb-1">Category Name:</label>
-                        <input type="text" placeholder="CategoryName"
+                        <input type="text" placeholder="Category Name"
                                id="CategoryName" name="name"
                                class="w-full px-4 py-2 border rounded focus:outline-none"
                                value="<?= $category->name ?? '' ?>"/>

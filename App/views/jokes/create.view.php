@@ -88,7 +88,7 @@ loadPartial('navigation');
                 <section class="mb-4">
                     <label for="AuthorName" class="mt-4 pb-1">Author:</label>
                     <input type="text" id="AuthorName"
-                           name="author_name" placeholder="Author"
+                           name="author_name" placeholder="Author Name"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                            value="<?= $joke['author_name'] ?? '' ?>"/>
                 </section>

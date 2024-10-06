@@ -77,7 +77,7 @@ loadPartial('navigation');
 
                 <div class="mb-4">
                     <label for="AuthorName" class="mt-4 pb-1">Author:</label>
-                    <input type="text" placeholder="Author" id="AuthorName" name="author_name"
+                    <input type="text" placeholder="Author Name" id="AuthorName" name="author_name"
                            class="w-full px-4 py-2 border rounded focus:outline-none"
                            value="<?= $joke->author_name ?? '' ?>"/>
                 </div>

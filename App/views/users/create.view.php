@@ -61,8 +61,8 @@ loadPartial('navigation');
                     </section>
 
                     <section class="mb-4">
-                        <label for="nickName" class="mt-4 pb-1">Nickname:</label>
-                        <input type="text" id="nickName"
+                        <label for="Nickname" class="mt-4 pb-1">Nickname:</label>
+                        <input type="text" id="Nickname"
                                name="nickname" placeholder="Nickname"
                                class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
                                value="<?= $user['nickname'] ?? ($user['given_name'] ?? '') ?>"/>
