@@ -163,7 +163,7 @@ class JokeController
 
             Session::setFlashMessage('success_message', 'Joke created successfully');
 
-            // Return success response
+            // Return success response as JSON
             echo json_encode(['success' => true]);
             exit;
         }
@@ -264,8 +264,8 @@ class JokeController
             return redirect('/jokes/' . $joke->id);
         }
 
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
+        //If the request method is POST and if the _method field says that it’s a PUT request.
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['_method'] === 'PUT') {
 
             $allowedFields = ['title', 'joke', 'category_name', 'tags', 'author_name'];
 
@@ -294,6 +294,7 @@ class JokeController
 
             // Check for errors
             if (!empty($errors)) {
+                // Return errors as JSON
                 echo json_encode(['status' => 'error', 'errors' => $errors]);
                 return;
             }
@@ -316,7 +317,7 @@ class JokeController
 
             Session::setFlashMessage('success_message', 'Joke Updated');
 
-
+            // Return success response as JSON
             echo json_encode(['status' => 'success']);
 
             exit;
